@@ -1,25 +1,38 @@
 version: 2.1
 
+orbs: 
+  node: circleci/node@5.0.0
+
 jobs:
   tests:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - yarn test
+      - run: yarn test
   lighthouse-mobile:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - yarn global add @lhci/cli@0.4.x
-      - yarn build && yarn lhc-mobile
+      - run: yarn global add @lhci/cli@0.4.x
+      - run: yarn build && yarn lhc-mobile
   lighthouse-desktop:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - yarn global add @lhci/cli@0.4.x
-      - yarn build && yarn lhc-desktop
+      - run: yarn global add @lhci/cli@0.4.x
+      - run: yarn build && yarn lhc-desktop
   lighthouse-no-emulation-no-throttle:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - yarn global add @lhci/cli@0.4.x
-      - yarn build && yarn lhc-no-emulation
+      - run: yarn global add @lhci/cli@0.4.x
+      - run: yarn build && yarn lhc-no-emulation
   deploy:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
