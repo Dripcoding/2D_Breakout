@@ -4,20 +4,12 @@ orbs:
   node: circleci/node@5.0.0
 
 workflows:
-  tests:
+  main:
     jobs:
       - tests
-  lighthouse-mobile:
-    jobs:
       - lighthouse-mobile
-  lighthouse-desktop:
-    jobs:
       - lighthouse-desktop
-  lighthouse-no-emulation-no-throttle:
-    jobs:
       - lighthouse-no-emulation-no-throttle
-  deploy:
-    jobs:
       - deploy
 
 jobs:
@@ -29,6 +21,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
+      - run: yarn install
       - run: yarn test
   lighthouse-mobile:
     docker:
@@ -38,6 +31,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
+      - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-mobile
   lighthouse-desktop:
@@ -48,6 +42,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
+      - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-desktop
   lighthouse-no-emulation-no-throttle:
@@ -58,6 +53,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
+      - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-no-emulation
   deploy:
