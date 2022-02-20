@@ -26,12 +26,18 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
       - run: yarn test
   lighthouse-mobile:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-mobile
   lighthouse-desktop:
@@ -39,6 +45,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-desktop
   lighthouse-no-emulation-no-throttle:
@@ -46,6 +55,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-no-emulation
   deploy:
