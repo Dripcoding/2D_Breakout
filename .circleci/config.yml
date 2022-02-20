@@ -21,7 +21,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
-      - run: yarn install
+      - run: yarn install && yarn add node-pre-gyp@0.11.0 --dev
       - run: yarn test
   lighthouse-mobile:
     docker:
@@ -31,7 +31,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
-      - run: yarn install
+      - run: yarn install && yarn add node-pre-gyp@0.11.0 --dev
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-mobile
   lighthouse-desktop:
@@ -42,7 +42,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
-      - run: yarn install
+      - run: yarn install && yarn add node-pre-gyp@0.11.0 --dev
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-desktop
   lighthouse-no-emulation-no-throttle:
