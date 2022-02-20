@@ -12,7 +12,7 @@ workflows:
       - lighthouse-mobile
       - lighthouse-desktop
       - lighthouse-no-emulation-no-throttle
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
           requires:
             - tests
             - lighthouse-mobile
