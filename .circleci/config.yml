@@ -1,15 +1,5 @@
 version 2.1
 
-workflows:
-  version: 2
-  build:
-    jobs:
-      - tests
-      - lighthouse-mobile
-      - lighthouse-desktop
-      - lighthouse-no-emulation-no-throttle
-      - deploy
-
 jobs:
   tests:
     steps:
