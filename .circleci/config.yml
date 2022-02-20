@@ -3,6 +3,23 @@ version: 2.1
 orbs: 
   node: circleci/node@5.0.0
 
+workflows:
+  tests:
+    jobs:
+      - tests
+  lighthouse-mobile:
+    jobs:
+      - lighthouse-mobile
+  lighthouse-desktop:
+    jobs:
+      - lighthouse-desktop
+  lighthouse-no-emulation-no-throttle:
+    jobs:
+      - lighthouse-no-emulation-no-throttle
+  deploy:
+    jobs:
+      - deploy
+
 jobs:
   tests:
     docker:
