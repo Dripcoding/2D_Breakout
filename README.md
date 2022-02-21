@@ -18,10 +18,17 @@ These instructions will get you a copy of the project running on your local mach
 * CSS3
 * Vanilla JS
 * [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-* [Socket.io](https://socket.io)
 * [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com)
 * [Heroku](https://devcenter.heroku.com)
+* [CircleCi](https://circleci.com)
+
+### Game Features
+* Difficulty modes (very easy, easy, medium, hard, very hard, marathon)
+* Changeable themes
+* Scoreboard
+* Mouse controls
+* Keyboard controls
 
 ### Contributing
 
