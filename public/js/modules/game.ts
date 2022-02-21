@@ -136,8 +136,6 @@ class Game {
 		const paddleWidth = paddle.getPaddleWidth()
 		const playerLives = player.getLives()
 		const playerScore = player.getScore()
-		// resize canvas dynamically
-		canvas.resizeDynamically()
 		// clear canvas before drawing
 		canvas.clear()
 		canvas.getCtx().beginPath()

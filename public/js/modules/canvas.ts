@@ -7,7 +7,6 @@ export interface ICanvas {
 	clear(): void
 	detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer): void
 	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer): void
-	resizeDynamically(): void
 	getCanvas(): HTMLCanvasElement
 	getCtx(): CanvasRenderingContext2D
 	getHeight(): number
@@ -113,10 +112,6 @@ class Canvas implements ICanvas {
 				}
 			}
 		}
-	}
-
-	public resizeDynamically(): void {
-		this.getCanvas().setAttribute('width', `${window.innerWidth * 0.8}`)
 	}
 
 	public getCanvas(): HTMLCanvasElement {
