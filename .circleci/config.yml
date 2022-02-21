@@ -18,6 +18,9 @@ workflows:
             - lighthouse-mobile
             - lighthouse-desktop
             - lighthouse-no-emulation-no-throttle
+          filters:
+            branches:
+              only: master
 
 jobs:
   tests:
