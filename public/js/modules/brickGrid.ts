@@ -22,7 +22,7 @@ interface IBrickObject {
 	y: number
 }
 
-class Brick implements IBrick {
+class BrickGrid implements IBrick {
 	// @ts-ignore
 	private activeBrickCount: number
 	private brickColor: string
@@ -154,4 +154,4 @@ class Brick implements IBrick {
 	}
 }
 
-export default Brick
+export default BrickGrid

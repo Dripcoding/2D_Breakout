@@ -1,23 +1,20 @@
 import Ball, { IBall } from './ball'
 
-import { IBrick } from './brick'
+import { IBrick } from './brickGrid'
 import { ICanvas } from './canvas'
 import { IGameMode } from './mode'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
 import {
-	easyMode,
-	hardMode,
-	marathonMode,
-	mediumMode,
-	veryHardMode,
+	GAME_MODES,
 	controlsModalLink,
 	gameModeSelect,
 	aboutModalLink,
 	settingsModalLink,
 	gameEndModalTitle,
 	gameEndModalBody,
+	modes,
 	playBtn,
 	pauseBtn,
 	resetBtn,
@@ -150,12 +147,12 @@ class Game {
 
 		// game over
 		if (playerLives === 0) {
-			this.showGameEndModal('Game Over', 'You lost. Game Over!')
+			this.showGameEventModal('Game Over', 'You lost. Game Over!')
 		}
 
 		// player wins - all bricks broken
 		if (playerScore == brickCount && modeName !== 'marathon') {
-			this.showGameEndModal('You Win', 'You Win! Congrats!')
+			this.showGameEventModal('You Win', 'You Win! Congrats!')
 		}
 
 		// marathon mode - reset brick grid when all bricks broken
@@ -173,7 +170,7 @@ class Game {
 		// update ball's position
 		ball.update()
 
-		if (this.pause === false) {
+		if (!this.pause) {
 			// animation loops
 			this.requestId = requestAnimationFrame(() => {
 				this.draw(
@@ -198,35 +195,35 @@ class Game {
 	}
 
 	// check if a key was pressed
-	public keyDownHandler = (e: KeyboardEvent): number => {
-		if (e.keyCode === 39) {
+	public keyDownHandler = (e: KeyboardEvent): string => {
+		if (e.key === "ArrowRight") {
 			// right cursor key pressed
 			this.rightPressed = true
-		} else if (e.keyCode === 37) {
+		} else if (e.key === 'ArrowLeft') {
 			// left cursor key pressed
 			this.leftPressed = true
-		} else if (e.keyCode === 80) {
+		} else if (e.key === 'p') {
 			// pause key pressed
 			this.pauseGame()
-		} else if (e.keyCode === 81) {
-			this.showGameEndModal('Game Over', 'You quit. Game Over!')
+		} else if (e.key === 'q') {
+			this.showGameEventModal('Game Over', 'You quit. Game Over!')
 		}
 
-		return e.keyCode
+		return e.key
 	}
 
 	// check if a key was released
-	public keyUpHandler = (e: KeyboardEvent): number => {
+	public keyUpHandler = (e: KeyboardEvent): string => {
 		// reset key state to default
-		if (e.keyCode === 39) {
+		if (e.key === 'ArrowRight') {
 			// right cursor key released
 			this.rightPressed = false
-		} else if (e.keyCode === 37) {
-			// right cursor key released
+		} else if (e.key === 'ArrowLeft') {
+			// left cursor key released
 			this.leftPressed = false
 		}
 
-		return e.keyCode
+		return e.key
 	}
 
 	public mouseClickHandler = (e: Event): string => {
@@ -291,15 +288,15 @@ class Game {
 		const canvasHeight = this.canvas.getWidth()
 
 		if (value === 'Easy') {
-			this.mode.setMode(easyMode)
+			this.mode.setMode(modes[GAME_MODES.EASY])
 		} else if (value === 'Medium') {
-			this.mode.setMode(mediumMode)
+			this.mode.setMode(modes[GAME_MODES.MEDIUM])
 		} else if (value === 'Hard') {
-			this.mode.setMode(hardMode)
+			this.mode.setMode(modes[GAME_MODES.HARD])
 		} else if (value === 'Very Hard') {
-			this.mode.setMode(veryHardMode)
+			this.mode.setMode(modes[GAME_MODES.VERY_HARD])
 		} else if (value === 'Marathon') {
-			this.mode.setMode(marathonMode)
+			this.mode.setMode(modes[GAME_MODES.MARATHON])
 		}
 
 		this.ball = new Ball(canvasHeight, canvasWidth, this.mode)
@@ -310,7 +307,7 @@ class Game {
 	}
 
 	// tells user they either won, quit, or the game is over
-	public showGameEndModal = (title: string, message: string): void => {
+	public showGameEventModal = (title: string, message: string): void => {
 		setScore(createScore(this.player.getScore(), this.mode.getMode().name))
 		gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null
 		gameEndModalBody

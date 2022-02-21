@@ -1,5 +1,5 @@
 import { IBall } from './ball'
-import { IBrick } from './brick'
+import { IBrick } from './brickGrid'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 
