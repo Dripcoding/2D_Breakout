@@ -1,11 +1,11 @@
 import Ball from '../public/js/modules/ball'
-import Brick from '../public/js/modules/brick'
+import BrickGrid from '../public/js/modules/brickGrid'
 import Game from '../public/js/modules/game'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
 import MockCanvas from '../public/js/modules/__mocks__/canvas'
 import Mode from '../public/js/modules/mode'
-import { veryEasyMode } from '../public/js/constants'
+import {GAME_MODES, modes} from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
 
@@ -53,10 +53,10 @@ describe('paddle', () => {
 			const canvas = new MockCanvas()
 			const canvasHeight = canvas.getHeight()
 			const canvasWidth = canvas.getWidth()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 
 			const ball = new Ball(canvasHeight, canvasWidth, mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const player = new Player(mode)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)

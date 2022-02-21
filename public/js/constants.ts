@@ -1,56 +1,62 @@
 // game modes
-export const easyMode = {
-	dx: 2,
-	dy: -2,
-	lives: 5,
-	maxDx: 2.5,
-	maxDy: -2.5,
-	name: 'easy',
+export enum GAME_MODES {
+	VERY_EASY = 'Very Easy',
+	EASY = 'Easy',
+	MEDIUM = 'Medium',
+	HARD = 'Hard',
+	VERY_HARD = 'Very Hard',
+	MARATHON = 'Marathon'
 }
 
-export const mediumMode = {
-	dx: 2.5,
-	dy: -2.5,
-	lives: 4,
-	maxDx: 3,
-	maxDy: -3,
-	name: 'medium',
-}
-
-export const hardMode = {
-	dx: 3,
-	dy: -3,
-	lives: 3,
-	maxDx: 3.5,
-	maxDy: -3.5,
-	name: 'hard',
-}
-
-export const marathonMode = {
-	dx: 1,
-	dy: -1,
-	lives: 10,
-	maxDx: 3,
-	maxDy: -3,
-	name: 'marathon',
-}
-
-export const veryHardMode = {
-	dx: 3.5,
-	dy: -3.5,
-	lives: 4,
-	maxDx: 4,
-	maxDy: -4,
-	name: 'veryHard',
-}
-
-export const veryEasyMode = {
-	dx: 1.5,
-	dy: -1.5,
-	lives: 5,
-	maxDx: 2,
-	maxDy: -2,
-	name: 'veryEasy',
+export const modes = {
+	'Very Easy': {
+		dx: 1.5,
+		dy: -1.5,
+		lives: 5,
+		maxDx: 2,
+		maxDy: -2,
+		name: 'veryEasy',
+	},
+	'Easy': {
+		dx: 2,
+		dy: -2,
+		lives: 5,
+		maxDx: 2.5,
+		maxDy: -2.5,
+		name: 'easy',
+	},
+	'Medium': {
+		dx: 2.5,
+		dy: -2.5,
+		lives: 4,
+		maxDx: 3,
+		maxDy: -3,
+		name: 'medium',
+	},
+	'Hard': {
+		dx: 3,
+		dy: -3,
+		lives: 3,
+		maxDx: 3.5,
+		maxDy: -3.5,
+		name: 'hard',
+	},
+	'Very Hard': {
+		dx: 3.5,
+		dy: -3.5,
+		lives: 4,
+		maxDx: 4,
+		maxDy: -4,
+		name: 'veryHard',
+	},
+	'Marathon': {
+		dx: 1,
+		dy: -1,
+		lives: 10,
+		maxDx: 3,
+		maxDy: -3,
+		name: 'marathon',
+	}
 }
 
 // modals

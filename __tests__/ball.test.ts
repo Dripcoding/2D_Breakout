@@ -1,16 +1,16 @@
 import Ball from '../public/js/modules/ball'
-import Brick from '../public/js/modules/brick'
+import BrickGrid from '../public/js/modules/brickGrid'
 import Game from '../public/js/modules/game'
 import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
-import { veryEasyMode } from '../public/js/constants'
+import {GAME_MODES, modes} from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
 
 describe('ball', () => {
-	const mode = new Mode(veryEasyMode)
+	const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 
 	test('ball should have the right properties', () => {
 		const ball = new Ball(10, 10, mode)
@@ -89,12 +89,12 @@ describe('ball', () => {
 	describe('game interactions', () => {
 		test('draw and update methods should be called while game draws', () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const canvasHeight = canvas.getHeight()
 			const canvasWidth = canvas.getWidth()
 
 			const ball = new Ball(canvasHeight, canvasWidth, mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const player = new Player(mode)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
@@ -108,6 +108,7 @@ describe('ball', () => {
 			expect(spy1).toHaveBeenCalledWith(canvas)
 
 			expect(spy2).toHaveBeenCalled()
+
 			expect(spy2).toHaveBeenCalledTimes(1)
 		})
 	})

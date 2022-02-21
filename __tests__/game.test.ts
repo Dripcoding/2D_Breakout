@@ -1,11 +1,11 @@
 import Ball from '../public/js/modules/ball'
-import Brick from '../public/js/modules/brick'
+import BrickGrid from '../public/js/modules/brickGrid'
 import Game from '../public/js/modules/game'
 import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
-import { veryEasyMode } from '../public/js/constants'
+import {GAME_MODES, modes} from '../public/js/constants'
 import { changeGameTheme } from '../public/js/services/theme'
 
 jest.mock('../public/js/modules/canvas')
@@ -15,11 +15,11 @@ jest.mock('../public/js/services/theme')
 describe('game', () => {
 	window.alert = () => {}
 
-	const mode = new Mode(veryEasyMode)
+	const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 	const canvas = new MockCanvas()
 	const ball = new Ball(canvas.height, canvas.width, mode)
 	const player = new Player(mode)
-	const brick = new Brick(mode)
+	const brick = new BrickGrid(mode)
 	const paddle = new Paddle(canvas)
 	const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -98,23 +98,23 @@ describe('game', () => {
 	test('keyDownHandler', () => {
 		const spy = jest.spyOn(game, 'keyDownHandler')
 		const spy2 = jest.spyOn(game, 'pauseGame')
-		let mockEvent = { keyCode: 39 }
+		let mockEvent = { key: 'ArrowRight' }
 		let code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(1)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(code).toBe(39)
+		expect(code).toBe('ArrowRight')
 
-		mockEvent = { keyCode: 37 }
+		mockEvent = { key: 'ArrowLeft' }
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(2)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(code).toBe(37)
+		expect(code).toBe('ArrowLeft')
 
-		mockEvent = { keyCode: 80 }
+		mockEvent = { key: 'p' }
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
@@ -122,36 +122,36 @@ describe('game', () => {
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(spy2).toHaveBeenCalled()
 		expect(spy2).toHaveBeenCalledTimes(1)
-		expect(code).toBe(80)
+		expect(code).toBe('p')
 
-		mockEvent = { keyCode: 81 }
+		mockEvent = { key: 'q' }
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(4)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(code).toBe(81)
+		expect(code).toBe('q')
 
 		spy2.mockClear()
 	})
 
 	test('keyUpHandler', () => {
 		const spy = jest.spyOn(game, 'keyUpHandler')
-		let mockEvent = { keyCode: 39 }
+		let mockEvent = { key: 'ArrowRight' }
 		let code = game.keyUpHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(1)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(code).toBe(39)
+		expect(code).toBe('ArrowRight')
 
-		mockEvent = { keyCode: 37 }
+		mockEvent = { key: 'ArrowLeft' }
 		code = game.keyUpHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(2)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(code).toBe(37)
+		expect(code).toBe('ArrowLeft')
 	})
 
 	test('mouseClickHandler', () => {
@@ -198,10 +198,10 @@ describe('game', () => {
 
 		test('drawCurrentGameMode should be called when game draws', () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 			const spy = jest.spyOn(game, 'drawCurrentGameMode')
@@ -217,10 +217,10 @@ describe('game', () => {
 
 		test("showGameEndModal should be called with 'You Win' message when game is over", () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -228,7 +228,7 @@ describe('game', () => {
 				brick.getBrickRowCount() * brick.getBrickColumnCount()
 			)
 
-			const spy = jest.spyOn(game, 'showGameEndModal')
+			const spy = jest.spyOn(game, 'showGameEventModal')
 
 			game.draw(ball, brick, canvas, paddle, player)
 
@@ -241,16 +241,16 @@ describe('game', () => {
 
 		test("showGameEndModal should be called with 'Game Over' message when game draws", () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
 			player.setLives(0)
 
-			const spy = jest.spyOn(game, 'showGameEndModal')
+			const spy = jest.spyOn(game, 'showGameEventModal')
 
 			game.draw(ball, brick, canvas, paddle, player)
 
@@ -266,16 +266,16 @@ describe('game', () => {
 
 		test('paddle posiiton should update when user presses right arrow key', () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
 			const spy = jest.spyOn(paddle, 'update')
 
-			game.keyDownHandler({ keyCode: 39 } as any)
+			game.keyDownHandler({ key: 'ArrowRight' } as any)
 			game.draw(ball, brick, canvas, paddle, player)
 
 			expect(spy).toHaveBeenCalled()
@@ -284,17 +284,17 @@ describe('game', () => {
 		})
 
 		test('paddle position should update when user presses left arrow key', () => {
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const canvas = new MockCanvas()
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
 			const spy = jest.spyOn(paddle, 'update')
 
-			game.keyDownHandler({ keyCode: 37 } as any)
+			game.keyDownHandler({ key: 'ArrowLeft' } as any)
 			game.draw(ball, brick, canvas, paddle, player)
 
 			expect(spy).toHaveBeenCalled()
@@ -304,10 +304,10 @@ describe('game', () => {
 
 		test('requestAnimationFrame should be called when game is not paused', () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -320,10 +320,10 @@ describe('game', () => {
 
 		test('cancelAnimationFrame should be called when game is paused', () => {
 			const canvas = new MockCanvas()
-			const mode = new Mode(veryEasyMode)
+			const mode = new Mode(modes[GAME_MODES.VERY_EASY])
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick(mode)
+			const brick = new BrickGrid(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
