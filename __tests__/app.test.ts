@@ -190,7 +190,7 @@ describe("application", () => {
 
         expect(gameModeEasyOption).not.toBeNull();
         expect(gameModeEasyOption instanceof HTMLOptionElement).toBe(true);
-        expect(gameModeEasyOption?.textContent).toBe("Easy");
+        expect(gameModeEasyOption?.textContent).toContain("Easy");
         expect(gameModeEasyOption?.getAttribute("name")).toBe("easy");
         expect(gameModeEasyOption?.getAttribute("id")).toBe("easy-mode-btn");
       });
@@ -202,7 +202,7 @@ describe("application", () => {
 
         expect(gameModeMediumOption).not.toBeNull();
         expect(gameModeMediumOption instanceof HTMLOptionElement).toBe(true);
-        expect(gameModeMediumOption?.textContent).toBe("Medium");
+        expect(gameModeMediumOption?.textContent).toContain("Medium");
         expect(gameModeMediumOption?.getAttribute("name")).toBe("medium");
         expect(gameModeMediumOption?.getAttribute("id")).toBe("medium-mode-btn");
       });
@@ -214,7 +214,7 @@ describe("application", () => {
 
         expect(gameModeHardOption).not.toBeNull();
         expect(gameModeHardOption instanceof HTMLOptionElement).toBe(true);
-        expect(gameModeHardOption?.textContent).toBe("Hard");
+        expect(gameModeHardOption?.textContent).toContain("Hard");
         expect(gameModeHardOption?.getAttribute("name")).toBe("hard");
         expect(gameModeHardOption?.getAttribute("id")).toBe("hard-mode-btn");
       });
@@ -226,7 +226,7 @@ describe("application", () => {
 
         expect(gameModeVeryHardOption).not.toBeNull();
         expect(gameModeVeryHardOption instanceof HTMLOptionElement).toBe(true);
-        expect(gameModeVeryHardOption?.textContent).toBe("Very Hard");
+        expect(gameModeVeryHardOption?.textContent).toContain("Very Hard");
         expect(gameModeVeryHardOption?.getAttribute("name")).toBe("veryHard");
         expect(gameModeVeryHardOption?.getAttribute("id")).toBe("veryHard-mode-btn");
       });
@@ -238,7 +238,7 @@ describe("application", () => {
 
         expect(gameModeMarathonOption).not.toBeNull();
         expect(gameModeMarathonOption instanceof HTMLOptionElement).toBe(true);
-        expect(gameModeMarathonOption?.textContent).toBe("Marathon");
+        expect(gameModeMarathonOption?.textContent).toContain("Marathon");
         expect(gameModeMarathonOption?.getAttribute("name")).toBe("marathon");
         expect(gameModeMarathonOption?.getAttribute("id")).toBe("marathon-mode-btn");
       });
