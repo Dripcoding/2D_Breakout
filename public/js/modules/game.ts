@@ -7,7 +7,6 @@ import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
 import {
-	GAME_MODES,
 	controlsModalLink,
 	gameModeSelect,
 	aboutModalLink,
@@ -21,7 +20,7 @@ import {
 	pastelOneRadio,
 	pastelTwoRadio,
 	pastelThreeRadio,
-	pastelDefaultRadio,
+	pastelDefaultRadio, ballColorSelect,
 } from '../constants'
 import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
 import { changeGameTheme } from '../services/theme'
@@ -71,6 +70,7 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
+		ballColorSelect?.addEventListener('change', this.selectBallColor, false)
 		// bootstrap events
 		$('#aboutModal').on('hidden.bs.modal', () => {
 			this.resumeGame()
@@ -287,23 +287,23 @@ class Game {
 		const canvasWidth = this.canvas.getHeight()
 		const canvasHeight = this.canvas.getWidth()
 
-		if (value === 'Easy') {
-			this.mode.setMode(modes[GAME_MODES.EASY])
-		} else if (value === 'Medium') {
-			this.mode.setMode(modes[GAME_MODES.MEDIUM])
-		} else if (value === 'Hard') {
-			this.mode.setMode(modes[GAME_MODES.HARD])
-		} else if (value === 'Very Hard') {
-			this.mode.setMode(modes[GAME_MODES.VERY_HARD])
-		} else if (value === 'Marathon') {
-			this.mode.setMode(modes[GAME_MODES.MARATHON])
-		}
+		this.mode.setMode(modes[value])
 
+		// todo: avoid creating new objects
 		this.ball = new Ball(canvasHeight, canvasWidth, this.mode)
 		this.player = new Player(this.mode)
 
 		this.drawCurrentGameMode(this.mode)
 		return this.mode
+	}
+
+	public selectBallColor = (e: Event): string => {
+		const { value } = <HTMLSelectElement>e.target
+
+		this.ball.setRandomizeBallColor(false);
+		this.ball.setBallColor(value)
+
+		return value
 	}
 
 	// tells user they either won, quit, or the game is over

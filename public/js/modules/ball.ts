@@ -9,6 +9,9 @@ export interface IBall {
 	getBallDy(): number
 	getBallX(): number
 	getBallY(): number
+	getRandomizeBallColor(): boolean
+	setRandomizeBallColor(randomize: boolean): boolean
+	setBallColor(color: string): string
 	setBallX(x: number): void
 	setBallY(y: number): void
 	setBallDx(dx: number): void
@@ -22,6 +25,7 @@ class Ball implements IBall {
 	private dy: number
 	private x: number
 	private y: number
+	private randomizeBallColor: boolean
 
 	constructor(public height: number, public width: number, public mode: any) {
 		this.ballColor = '#0095DD'
@@ -33,14 +37,17 @@ class Ball implements IBall {
 		// velocity - change in position
 		this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx
 		this.dy = Math.random() * (mode.maxDy - mode.dy) + mode.dy
+		this.randomizeBallColor = true
 	}
 
 	public changeColor(): string {
-		const red = Math.random() * 256
-		const green = Math.random() * 256
-		const blue = Math.random() * 256
-		const color = `rgb(${red}, ${green}, ${blue})`
-		this.ballColor = color
+		if (this.getRandomizeBallColor()) {
+			const red = Math.random() * 256
+			const green = Math.random() * 256
+			const blue = Math.random() * 256
+			const color = `rgb(${red}, ${green}, ${blue})`
+			this.setBallColor(color)
+		}
 		return this.ballColor
 	}
 
@@ -82,6 +89,18 @@ class Ball implements IBall {
 
 	public getBallDy(): number {
 		return this.dy
+	}
+
+	public getRandomizeBallColor(): boolean {
+		return this.randomizeBallColor
+	}
+
+	public setRandomizeBallColor(randomize: boolean): boolean {
+		return this.randomizeBallColor = randomize
+	}
+
+	public setBallColor(color: string): string {
+		return this.ballColor = color
 	}
 
 	public setBallX(x: number): void {

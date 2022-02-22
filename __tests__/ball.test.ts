@@ -45,6 +45,15 @@ describe('ball', () => {
 		expect(color).not.toBe(newColor)
 	})
 
+	test("changeColor() should not change ball color if randomize property false", () => {
+		const ball = new Ball(10, 10, mode)
+
+		ball.setRandomizeBallColor(false)
+		const color = ball.changeColor()
+
+		expect(color).toBe(ball.getBallColor())
+	})
+
 	test('update() should update x and y values', () => {
 		const ball = new Ball(10, 10, mode)
 		const dx = ball.getBallDx()
@@ -69,21 +78,27 @@ describe('ball', () => {
 		const y = ball.getBallY()
 		const dx = ball.getBallDx()
 		const dy = ball.getBallDy()
+		const randomizeBallColor = ball.getRandomizeBallColor()
 
 		expect(color).toBe('#0095DD')
 		expect(radius).toBe(10)
 		expect(x).toBe(canvas.width / 2)
 		expect(y).toBe(canvas.height - 30)
+		expect(randomizeBallColor).toBe(true)
 
 		ball.setBallX(-x)
 		ball.setBallY(-y)
 		ball.setBallDx(-dx)
 		ball.setBallDy(-dy)
+		ball.setBallColor('white')
+		ball.setRandomizeBallColor(false)
 
 		expect(ball.getBallX()).toBe(-x)
 		expect(ball.getBallY()).toBe(-y)
 		expect(ball.getBallDx()).toBe(-dx)
 		expect(ball.getBallDy()).toBe(-dy)
+		expect(ball.getBallColor()).toBe('white')
+		expect(ball.getRandomizeBallColor()).toBe(false)
 	})
 
 	describe('game interactions', () => {
