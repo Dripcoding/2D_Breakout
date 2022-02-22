@@ -1,4 +1,6 @@
 // game modes
+import {IMode} from "./modules/mode";
+
 export enum GAME_MODES {
 	VERY_EASY = 'Very Easy',
 	EASY = 'Easy',
@@ -8,8 +10,8 @@ export enum GAME_MODES {
 	MARATHON = 'Marathon'
 }
 
-export const modes = {
-	'Very Easy': {
+export const modes: {[index: string]: IMode} = {
+	[GAME_MODES.VERY_EASY]: {
 		dx: 1.5,
 		dy: -1.5,
 		lives: 5,
@@ -17,7 +19,7 @@ export const modes = {
 		maxDy: -2,
 		name: 'veryEasy',
 	},
-	'Easy': {
+	[GAME_MODES.EASY]: {
 		dx: 2,
 		dy: -2,
 		lives: 5,
@@ -25,7 +27,7 @@ export const modes = {
 		maxDy: -2.5,
 		name: 'easy',
 	},
-	'Medium': {
+	[GAME_MODES.MEDIUM]: {
 		dx: 2.5,
 		dy: -2.5,
 		lives: 4,
@@ -33,7 +35,7 @@ export const modes = {
 		maxDy: -3,
 		name: 'medium',
 	},
-	'Hard': {
+	[GAME_MODES.HARD]: {
 		dx: 3,
 		dy: -3,
 		lives: 3,
@@ -41,7 +43,7 @@ export const modes = {
 		maxDy: -3.5,
 		name: 'hard',
 	},
-	'Very Hard': {
+	[GAME_MODES.VERY_HARD]: {
 		dx: 3.5,
 		dy: -3.5,
 		lives: 4,
@@ -49,7 +51,7 @@ export const modes = {
 		maxDy: -4,
 		name: 'veryHard',
 	},
-	'Marathon': {
+	[GAME_MODES.MARATHON]: {
 		dx: 1,
 		dy: -1,
 		lives: 10,
@@ -153,9 +155,6 @@ export const pastelDict: IPastelDict = {
 }
 
 // theme inputs
-export const numberOfThemes = document.querySelectorAll<HTMLInputElement>(
-	'[type=radio]'
-).length
 export const pastelOneRadio = document.querySelector<HTMLInputElement>(
 	'#pastelOneRadio'
 )
@@ -167,4 +166,9 @@ export const pastelThreeRadio = document.querySelector<HTMLInputElement>(
 )
 export const pastelDefaultRadio = document.querySelector<HTMLInputElement>(
 	'#pastelDefaultRadio'
+)
+
+// ball color select
+export const ballColorSelect = document.querySelector<HTMLSelectElement>(
+	'#ballColorSelect'
 )

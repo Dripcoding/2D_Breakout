@@ -103,7 +103,9 @@ class Canvas implements ICanvas {
 						ballY < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
 					) {
 						ball.setBallDy(-ballDy)
-						ball.changeColor()
+						if (ball.getRandomizeBallColor()) {
+							ball.changeColor()
+						}
 						b.status = 0
 						// player.score++
 						player.setScore(playerScore + 1)

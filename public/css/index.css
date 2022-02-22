@@ -65,6 +65,10 @@ p {
 	margin-bottom: 0;
 }
 
+.modal-content {
+	background-color: unset;
+}
+
 .modal-content .modal-header {
 	background-color: #dc004e;
 	border-bottom: none;
