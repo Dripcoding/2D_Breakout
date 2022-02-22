@@ -1,455 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="JavaScript 2D-Breakout" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><%= htmlWebpackPlugin.options.title %></title>
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-			crossorigin="anonymous"
-			media="screen"
-		/>
-	</head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="JavaScript 2D-Breakout" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+    media="screen"
+  />
+</head>
 
-	<body>
-		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
-			<a
-				class="navbar-brand"
-				href="https://github.com/JustinSHong/2D_Breakout"
-				>2D Breakout</a
-			>
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarNavAltMarkup"
-				aria-controls="navbarNavAltMarkup"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<a
-						class="nav-item nav-link"
-						data-toggle="modal"
-						data-target="#aboutModal"
-						href="#"
-						id="aboutModalLink"
-						>About</a
-					>
-					<a
-						class="nav-item nav-link"
-						data-toggle="modal"
-						data-target="#controlsModal"
-						href="#"
-						id="controlsModalLink"
-						>Controls</a
-					>
-					<a
-						class="nav-item nav-link"
-						href="https://github.com/JustinSHong/2D_Breakout"
-						>Github Repo</a
-					>
-					<a
-						class="nav-item nav-link"
-						data-toggle="modal"
-						data-target="#settingsModal"
-						id="settingsModalLink"
-						href="#"
-						>Settings</a
-					>
-				</div>
-			</div>
-		</nav>
-		<!-- About Modal -->
-		<div
-			class="modal fade"
-			id="aboutModal"
-			tabindex="-1"
-			role="dialog"
-			aria-labelledby="aboutModal"
-			aria-hidden="true"
-		>
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="aboutModalLabel">About</h5>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>A 2D break out game made with:</p>
-						<ul class="list-unstyled">
-							<li>HTML5</li>
-							<li>CSS3</li>
-							<li>Typescript</li>
-							<li>Node.js / Express</li>
-						</ul>
-						<p>
-							<a
-								id="githubRepoLink"
-								href="https://github.com/JustinSHong/2D_Breakout"
-								>Click here to visit the Github repo</a
-							>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Settings Modal -->
-		<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Settings</h5>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="gameModeSelect">Game Modes</label>
-							<select
-								class="form-control"
-								name="gameModeSelect"
-								id="gameModeSelect"
-							>
-								<option name="easy" id="easy-mode-btn"
-									>Easy</option
-								>
-								<option name="medium" id="medium-mode-btn"
-									>Medium</option
-								>
-								<option name="hard" id="hard-mode-btn"
-									>Hard</option
-								>
-								<option name="veryHard" id="veryHard-mode-btn"
-									>Very Hard</option
-								>
-								<option name="marathon" id="marathon-mode-btn"
-									>Marathon</option
-								>
-							</select>
-						</div>
-						<div class="form-group">
-							<div class="form-check" id="pastelOneContainer">
-								<input
-									class="form-check-input"
-									name="themeRadioBtn"
-									type="radio"
-									value="pastelOne"
-									id="pastelOneRadio"
-								/>
-								<label
-									class="form-check-label"
-									for="pastelOneRadio"
-								>
-									Theme 1
-								</label>
-								<div
-									class="form-group row"
-									id="themeOne-container"
-								>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
+  <a
+    class="navbar-brand"
+    href="https://github.com/JustinSHong/2D_Breakout"
+  >2D Breakout</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a
+        class="nav-item nav-link"
+        data-toggle="modal"
+        data-target="#aboutModal"
+        href="#"
+        id="aboutModalLink"
+      >About</a
+      >
+      <a
+        class="nav-item nav-link"
+        data-toggle="modal"
+        data-target="#controlsModal"
+        href="#"
+        id="controlsModalLink"
+      >Controls</a
+      >
+      <a
+        class="nav-item nav-link"
+        href="https://github.com/JustinSHong/2D_Breakout"
+      >Github Repo</a
+      >
+      <a
+        class="nav-item nav-link"
+        data-toggle="modal"
+        data-target="#settingsModal"
+        id="settingsModalLink"
+        href="#"
+      >Settings</a
+      >
+    </div>
+  </div>
+</nav>
+<!-- About Modal -->
+<div
+  class="modal fade"
+  id="aboutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="aboutModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aboutModalLabel">About</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>A 2D break out game made with:</p>
+        <ul class="list-unstyled">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Typescript</li>
+          <li>Node.js / Express</li>
+        </ul>
+        <p>
+          <a
+            id="githubRepoLink"
+            href="https://github.com/JustinSHong/2D_Breakout"
+          >Click here to visit the Github repo</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Settings</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="gameModeSelect">Game Modes</label>
+          <select
+            class="form-control"
+            name="gameModeSelect"
+            id="gameModeSelect"
+          >
+            <option name="easy" id="easy-mode-btn"
+            >Easy
+            </option
+            >
+            <option name="medium" id="medium-mode-btn"
+            >Medium
+            </option
+            >
+            <option name="hard" id="hard-mode-btn"
+            >Hard
+            </option
+            >
+            <option name="veryHard" id="veryHard-mode-btn"
+            >Very Hard
+            </option
+            >
+            <option name="marathon" id="marathon-mode-btn"
+            >Marathon
+            </option
+            >
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-check" id="pastelOneContainer">
+            <input
+              class="form-check-input"
+              name="themeRadioBtn"
+              type="radio"
+              value="pastelOne"
+              id="pastelOneRadio"
+            />
+            <label
+              class="form-check-label"
+              for="pastelOneRadio"
+            >
+              Theme 1
+            </label>
+            <div
+              class="form-group row"
+              id="themeOne-container"
+            >
 									<span
-										id="pastelOneRadio-color-1"
-										class="pastelColorContainer"
-									></span>
+                    id="pastelOneRadio-color-1"
+                    class="pastelColorContainer"
+                  ></span>
+              <span
+                id="pastelOneRadio-color-2"
+                class="pastelColorContainer"
+              ></span>
+              <span
+                id="pastelOneRadio-color-3"
+                class="pastelColorContainer"
+              ></span>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              name="themeRadioBtn"
+              type="radio"
+              value="pastelTwo"
+              id="pastelTwoRadio"
+            />
+            <label
+              class="form-check-label"
+              for="pastelTwoRadio"
+            >
+              Theme 2
+            </label>
+            <div
+              class="form-group row"
+              id="themeTwo-container"
+            >
 									<span
-										id="pastelOneRadio-color-2"
-										class="pastelColorContainer"
-									></span>
+                    id="pastelTwoRadio-color-1"
+                    class="pastelColorContainer"
+                  ></span>
+              <span
+                id="pastelTwoRadio-color-2"
+                class="pastelColorContainer"
+              ></span>
+              <span
+                id="pastelTwoRadio-color-3"
+                class="pastelColorContainer"
+              ></span>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              name="themeRadioBtn"
+              type="radio"
+              value="pastelThree"
+              id="pastelThreeRadio"
+            />
+            <label
+              class="form-check-label"
+              for="pastelThreeRadio"
+            >
+              Theme 3
+            </label>
+            <div
+              class="form-group row"
+              id="themeThree-container"
+            >
 									<span
-										id="pastelOneRadio-color-3"
-										class="pastelColorContainer"
-									></span>
-								</div>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									name="themeRadioBtn"
-									type="radio"
-									value="pastelTwo"
-									id="pastelTwoRadio"
-								/>
-								<label
-									class="form-check-label"
-									for="pastelTwoRadio"
-								>
-									Theme 2
-								</label>
-								<div
-									class="form-group row"
-									id="themeTwo-container"
-								>
+                    id="pastelThreeRadio-color-1"
+                    class="pastelColorContainer"
+                  ></span>
+              <span
+                id="pastelThreeRadio-color-2"
+                class="pastelColorContainer"
+              ></span>
+              <span
+                id="pastelThreeRadio-color-3"
+                class="pastelColorContainer"
+              ></span>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              name="themeRadioBtn"
+              type="radio"
+              value="pastelDefault"
+              id="pastelDefaultRadio"
+            />
+            <label
+              class="form-check-label"
+              for="pastelDefaultRadio"
+            >
+              Default
+            </label>
+            <div
+              class="form-group row"
+              id="defaultTheme-container"
+            >
 									<span
-										id="pastelTwoRadio-color-1"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelTwoRadio-color-2"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelTwoRadio-color-3"
-										class="pastelColorContainer"
-									></span>
-								</div>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									name="themeRadioBtn"
-									type="radio"
-									value="pastelThree"
-									id="pastelThreeRadio"
-								/>
-								<label
-									class="form-check-label"
-									for="pastelThreeRadio"
-								>
-									Theme 3
-								</label>
-								<div
-									class="form-group row"
-									id="themeThree-container"
-								>
-									<span
-										id="pastelThreeRadio-color-1"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelThreeRadio-color-2"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelThreeRadio-color-3"
-										class="pastelColorContainer"
-									></span>
-								</div>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									name="themeRadioBtn"
-									type="radio"
-									value="pastelDefault"
-									id="pastelDefaultRadio"
-								/>
-								<label
-									class="form-check-label"
-									for="pastelDefaultRadio"
-								>
-									Default
-								</label>
-								<div
-									class="form-group row"
-									id="defaultTheme-container"
-								>
-									<span
-										id="pastelDefaultRadio-color-1"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelDefaultRadio-color-2"
-										class="pastelColorContainer"
-									></span>
-									<span
-										id="pastelDefaultRadio-color-3"
-										class="pastelColorContainer"
-									></span>
-								</div>
-							</div>
-							<div class="form-check">
-								<label for="ballColorSelect">Ball colors</label>
-								<select
-										class="form-control"
-										name="ballColorSelect"
-										id="ballColorSelect"
-								>
-									<option name="White" id="ball-color-white-btn" value="#eee">White</option>
-									<option name="Red" id="ball-color-red-btn" value="#dc004e">Red</option>
-									<option name="Blue" id="ball-color-blue-btn" value="#0095DD">Blue</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Controls Modal -->
-		<div class="modal fade" id="controlsModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Controls</h5>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<table class="controlsTable table border-top-0">
-							<thead>
-								<tr>
-									<th class="controlsTableHeader" scope="col">
-										Key
-									</th>
-									<th class="controlsTableHeader" scope="col">
-										Description
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">P</th>
-									<td>Pause the action</td>
-								</tr>
-								<tr>
-									<th scope="row">Q</th>
-									<td>Quit or Reset</td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<i class="material-icons">arrow_back</i>
-									</th>
-									<td>Move paddle left with back arrow</td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<i class="material-icons"
-											>arrow_forward</i
-										>
-									</th>
-									<td>Move paddle right with right arrow</td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<i class="material-icons">mouse</i>
-									</th>
-									<td>
-										Move paddle left and right with mouse
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Game Ended Modal -->
-		<div class="modal" id="gameEndModal" role="dialog" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="gameEndModalTitle">
-							Modal title
-						</h5>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" id="gameEndModalBody"></div>
-				</div>
-			</div>
-		</div>
-		<!-- Game Information -->
-		<main>
-			<!-- Toolbar -->
-			<div
-				class="btn-toolbar"
-				role="toolbar"
-				aria-label="Toolbar with button groups"
-			>
-				<button
-					type="button"
-					class="btn btn-secondary btn-lg mr-2"
-					id="playBtn"
-				>
-					Play
-				</button>
-				<button
-					type="button"
-					class="btn btn-secondary btn-lg mr-2"
-					id="pauseBtn"
-				>
-					Pause
-				</button>
-				<button
-					type="button"
-					class="btn btn-secondary btn-lg mr-2"
-					id="resetBtn"
-				>
-					Reset
-				</button>
-			</div>
-			<!-- Game Canvas -->
-			<canvas
-				tabindex="0"
-				id="myCanvas"
-				width="900"
-				height="550"
-			></canvas>
-			<!-- User Score Board -->
-			<table class="table" id="scoreBoard">
-				<thead>
-					<tr>
-						<th scope="col">Attempts</th>
-						<th scope="col">Score</th>
-						<th scope="col">Mode</th>
-						<th scope="col">Timestamp</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">0</th>
-						<td>Your score</td>
-						<td>Mode you played</td>
-						<td>When you played</td>
-					</tr>
-				</tbody>
-			</table>
-		</main>
-		<script
-			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-			crossorigin="anonymous"
-		></script>
-	</body>
+                    id="pastelDefaultRadio-color-1"
+                    class="pastelColorContainer"
+                  ></span>
+              <span
+                id="pastelDefaultRadio-color-2"
+                class="pastelColorContainer"
+              ></span>
+              <span
+                id="pastelDefaultRadio-color-3"
+                class="pastelColorContainer"
+              ></span>
+            </div>
+          </div>
+          <div class="form-check">
+            <label for="ballColorSelect">Ball colors</label>
+            <select
+              class="form-control"
+              name="ballColorSelect"
+              id="ballColorSelect"
+            >
+              <option name="White" id="ball-color-white-btn" value="#eee">White</option>
+              <option name="Red" id="ball-color-red-btn" value="#dc004e">Red</option>
+              <option name="Blue" id="ball-color-blue-btn" value="#0095DD">Blue</option>
+            </select>
+          </div>
+          <div class="form-check">
+            <label for="ballColorSelect">Ball colors</label>
+            <select
+              class="form-control"
+              name="ballColorSelect"
+              id="paddleColorSelect"
+            >
+              <option name="White" id="paddle-color-white-btn" value="#eee">White</option>
+              <option name="Red" id="paddle-color-red-btn" value="#dc004e">Red</option>
+              <option name="Blue" id="paddle-color-blue-btn" value="#0095DD">Blue</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Controls Modal -->
+<div class="modal fade" id="controlsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Controls</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="controlsTable table border-top-0">
+          <thead>
+          <tr>
+            <th class="controlsTableHeader" scope="col">
+              Key
+            </th>
+            <th class="controlsTableHeader" scope="col">
+              Description
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">P</th>
+            <td>Pause the action</td>
+          </tr>
+          <tr>
+            <th scope="row">Q</th>
+            <td>Quit or Reset</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <i class="material-icons">arrow_back</i>
+            </th>
+            <td>Move paddle left with back arrow</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <i class="material-icons"
+              >arrow_forward</i
+              >
+            </th>
+            <td>Move paddle right with right arrow</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <i class="material-icons">mouse</i>
+            </th>
+            <td>
+              Move paddle left and right with mouse
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Game Ended Modal -->
+<div class="modal" id="gameEndModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gameEndModalTitle">
+          Modal title
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="gameEndModalBody"></div>
+    </div>
+  </div>
+</div>
+<!-- Game Information -->
+<main>
+  <!-- Toolbar -->
+  <div
+    class="btn-toolbar"
+    role="toolbar"
+    aria-label="Toolbar with button groups"
+  >
+    <button
+      type="button"
+      class="btn btn-secondary btn-lg mr-2"
+      id="playBtn"
+    >
+      Play
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary btn-lg mr-2"
+      id="pauseBtn"
+    >
+      Pause
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary btn-lg mr-2"
+      id="resetBtn"
+    >
+      Reset
+    </button>
+  </div>
+  <!-- Game Canvas -->
+  <canvas
+    tabindex="0"
+    id="myCanvas"
+    width="900"
+    height="550"
+  ></canvas>
+  <!-- User Score Board -->
+  <table class="table" id="scoreBoard">
+    <thead>
+    <tr>
+      <th scope="col">Attempts</th>
+      <th scope="col">Score</th>
+      <th scope="col">Mode</th>
+      <th scope="col">Timestamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">0</th>
+      <td>Your score</td>
+      <td>Mode you played</td>
+      <td>When you played</td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+  crossorigin="anonymous"
+></script>
+</body>
 </html>

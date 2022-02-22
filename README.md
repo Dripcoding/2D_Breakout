@@ -1,10 +1,12 @@
 # 2D Breakout Game
 
-This is a simple clone of the classic breakout arcade game powered by HTML5, CSS3, and canvas. See the deployed project live [here](https://breakout-2d.herokuapp.com).
+This is a simple clone of the classic breakout arcade game powered by HTML5, CSS3, and canvas. See the deployed project
+live [here](https://breakout-2d.herokuapp.com).
 
 ## Getting Started
 
-These instructions will get you a copy of the project running on your local machine for development and testing purposes. To see the deployed project [click here](https://breakout-2d.herokuapp.com).
+These instructions will get you a copy of the project running on your local machine for development and testing
+purposes. To see the deployed project [click here](https://breakout-2d.herokuapp.com).
 
 ### Installing
 
@@ -24,6 +26,7 @@ These instructions will get you a copy of the project running on your local mach
 * [CircleCi](https://circleci.com)
 
 ### Game Features
+
 * Difficulty modes (very easy, easy, medium, hard, very hard, marathon)
 * Changeable themes
 * Scoreboard

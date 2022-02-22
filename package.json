@@ -1,74 +1,74 @@
 {
-	"name": "2D_Breakout",
-	"version": "1.0.0",
-	"description": "",
-	"private": true,
-	"scripts": {
-		"build": "npx webpack --config webpack-prod.config.js",
-		"start": "node server.js",
-		"dev": "webpack-dev-server --open",
-		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
-		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
-		"lhc-no-emulation": "lhci autorun --config=./lighthouse-noEmulation-noThrottle.js",
-		"test": "jest",
-		"test-watch": "jest --watch",
-		"watch": "webpack --watch"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/JustinSHong/2D_Breakout.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/JustinSHong/2D_Breakout/issues"
-	},
-	"homepage": "https://github.com/JustinSHong/2D_Breakout#readme",
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"./public/js/*.js": [
-			"prettier --write",
-			"git add"
-		]
-	},
-	"dependencies": {
-		"cors": "^2.8.5",
-		"express": "^4.17.1",
-		"helmet": "^3.22.0"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.9.6",
-		"@babel/plugin-proposal-class-properties": "^7.8.3",
-		"@babel/preset-env": "^7.9.6",
-		"@babel/preset-flow": "^7.9.0",
-		"@babel/preset-typescript": "^7.9.0",
-		"@types/bootstrap": "^4.5.0",
-		"@types/jest": "^26.0.9",
-		"@types/jquery": "^3.3.38",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"canvas": "^2.6.1",
-		"clean-webpack-plugin": "^3.0.0",
-		"core-js": "^3.6.5",
-		"css-loader": "^3.5.3",
-		"html-webpack-plugin": "^3.2.0",
-		"husky": "^4.2.3",
-		"jest": "^26.0.1",
-		"lint-staged": "^10.0.8",
-		"mini-css-extract-plugin": "^0.10.0",
-		"optimize-css-assets-webpack-plugin": "^5.0.3",
-		"prettier": "^1.19.1",
-		"terser-webpack-plugin": "^4.1.0",
-		"ts-loader": "^6.2.1",
-		"typescript": "^3.8.3",
-		"webpack": "^4.42.0",
-		"webpack-cli": "^3.3.11",
-		"webpack-dev-server": "^3.10.3",
-		"webpack-merge": "^5.1.1"
-	}
+  "name": "2D_Breakout",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "npx webpack --config webpack-prod.config.js",
+    "start": "node server.js",
+    "dev": "webpack-dev-server --open",
+    "lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
+    "lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
+    "lhc-no-emulation": "lhci autorun --config=./lighthouse-noEmulation-noThrottle.js",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinSHong/2D_Breakout.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinSHong/2D_Breakout/issues"
+  },
+  "homepage": "https://github.com/JustinSHong/2D_Breakout#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./public/js/*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-flow": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/bootstrap": "^4.5.0",
+    "@types/jest": "^26.0.9",
+    "@types/jquery": "^3.3.38",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "canvas": "^2.6.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "core-js": "^3.6.5",
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.3",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.0.8",
+    "mini-css-extract-plugin": "^0.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prettier": "^1.19.1",
+    "terser-webpack-plugin": "^4.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^5.1.1"
+  }
 }
