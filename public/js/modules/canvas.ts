@@ -19,6 +19,8 @@ export interface ICanvas {
   getWidth(): number;
 
   getBorderOn(): boolean;
+
+  setBorderOn(): void;
 }
 
 class Canvas implements ICanvas {
@@ -146,8 +148,8 @@ class Canvas implements ICanvas {
     return this.borderOn;
   }
 
-  public setBorderOn(value: boolean): void {
-    this.borderOn = value;
+  public setBorderOn(): void {
+    this.borderOn = !this.borderOn;
   }
 }
 

@@ -281,6 +281,8 @@ class Game {
   public toggleBorder = () => {
     const myCanvas = document.querySelector("#myCanvas");
 
+    this.canvas.setBorderOn();
+
     this.canvas.getBorderOn() ? myCanvas?.classList.add("canvas--showBorder")
       : myCanvas?.classList.remove("canvas--showBorder");
   };
