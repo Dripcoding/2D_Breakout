@@ -165,6 +165,14 @@ describe("application", () => {
       expect(closeButton?.getAttribute("data-dismiss")).toBe("modal");
     });
 
+    test("it should have a scoreboard reset button", () => {
+      const resetButton = document.getElementById("scoreBoardResetBtn");
+
+      expect(resetButton).not.toBeNull();
+      expect(resetButton instanceof HTMLButtonElement).toBe(true);
+      expect(resetButton?.textContent).toBe("Reset scoreboard");
+    });
+
     describe("game mode select", () => {
 
       test("it should render correctly", () => {
