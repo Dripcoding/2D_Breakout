@@ -1,12 +1,12 @@
 import { IBall } from "./ball";
-import { IBrick } from "./brickGrid";
+import { IBrickGrid } from "./brickGrid";
 import { IPaddle } from "./paddle";
 import { IPlayer } from "./player";
 
 export interface ICanvas {
   clear(): void;
 
-  detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer): void;
+  detectBrickCollisions(ball: IBall, brickGrid: IBrickGrid, player: IPlayer): void;
 
   detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer): void;
 
@@ -81,17 +81,17 @@ class Canvas implements ICanvas {
 
   public detectBrickCollisions(
     ball: IBall,
-    brick: IBrick,
+    brickGrid: IBrickGrid,
     player: IPlayer
   ): void {
     const ballX = ball.getBallX();
     const ballY = ball.getBallY();
     const ballDy = ball.getBallDy();
-    const brickColumnCount = brick.getBrickColumnCount();
-    const brickRowCount = brick.getBrickRowCount();
-    const bricks = brick.getBricks();
-    const brickHeight = brick.getBrickHeight();
-    const brickWidth = brick.getBrickWidth();
+    const brickColumnCount = brickGrid.getBrickColumnCount();
+    const brickRowCount = brickGrid.getBrickRowCount();
+    const bricks = brickGrid.getBricks();
+    const brickHeight = brickGrid.getBrickHeight();
+    const brickWidth = brickGrid.getBrickWidth();
     const playerScore = player.getScore();
 
     // compare position of bricks with the ball for every frame
@@ -115,7 +115,7 @@ class Canvas implements ICanvas {
             b.status = 0;
             // player.score++
             player.setScore(playerScore + 1);
-            brick.setActiveBrickCount();
+            brickGrid.setActiveBrickCount();
           }
         }
       }

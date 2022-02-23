@@ -1,7 +1,7 @@
 import { ICanvas } from "./canvas";
 import { IMode } from "./mode";
 
-export interface IBrick {
+export interface IBrickGrid {
   calculateActiveBrickCount(): number;
 
   changeColor(): string;
@@ -25,6 +25,8 @@ export interface IBrick {
   getBricks(): IBrickObject[][];
 
   setActiveBrickCount(): void;
+
+  setBrickColor(color: string): void;
 }
 
 interface IBrickObject {
@@ -33,7 +35,7 @@ interface IBrickObject {
   y: number;
 }
 
-class BrickGrid implements IBrick {
+class BrickGrid implements IBrickGrid {
   // @ts-ignore
   private activeBrickCount: number;
   private brickColor: string;
@@ -48,7 +50,7 @@ class BrickGrid implements IBrick {
   private mode: IMode;
 
   constructor(mode: any) {
-    // brick properties
+    // brickGrid properties
     this.brickColor = "#0095DD";
     this.brickRowCount = 10;
     this.brickColumnCount = 7;
@@ -126,6 +128,14 @@ class BrickGrid implements IBrick {
     }
 
     return this.bricks;
+  }
+
+  public getBrickColor(): string {
+    return this.brickColor;
+  }
+
+  public setBrickColor(color: string): void {
+    this.brickColor = color;
   }
 
   public getActiveBrickCount(): number {

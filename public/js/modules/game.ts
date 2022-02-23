@@ -1,6 +1,6 @@
 import Ball, { IBall } from "./ball";
 
-import { IBrick } from "./brickGrid";
+import { IBrickGrid } from "./brickGrid";
 import { ICanvas } from "./canvas";
 import { IGameMode } from "./mode";
 import { IPaddle } from "./paddle";
@@ -20,7 +20,7 @@ import {
   pastelOneRadio,
   pastelTwoRadio,
   pastelThreeRadio,
-  pastelDefaultRadio, ballColorSelect, paddleColorSelect
+  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect
 } from "../constants";
 import { createScore, setScore, drawScoreBoardEntry } from "../services/score";
 import { changeGameTheme } from "../services/theme";
@@ -34,14 +34,14 @@ class Game {
 
   constructor(
     public ball: IBall,
-    public brick: IBrick,
+    public brickGrid: IBrickGrid,
     public canvas: ICanvas,
     public mode: IGameMode,
     public paddle: IPaddle,
     public player: IPlayer
   ) {
     this.ball = ball;
-    this.brick = brick;
+    this.brickGrid = brickGrid;
     this.canvas = canvas;
     this.paddle = paddle;
     this.rightPressed = false;
@@ -62,7 +62,7 @@ class Game {
     this.requestId = requestAnimationFrame(() =>
       this.draw(
         this.ball,
-        this.brick,
+        this.brickGrid,
         this.canvas,
         this.paddle,
         this.player
@@ -73,13 +73,13 @@ class Game {
   // main draw function of the game - initiates game loop
   public draw(
     ball: IBall,
-    brick: IBrick,
+    brickGrid: IBrickGrid,
     canvas: ICanvas,
     paddle: IPaddle,
     player: IPlayer
   ): void {
-    const activeBrickCount = brick.getActiveBrickCount();
-    const brickCount = brick.getBrickCount();
+    const activeBrickCount = brickGrid.getActiveBrickCount();
+    const brickCount = brickGrid.getBrickCount();
     const modeName = this.mode.getMode().name;
     const paddleX = paddle.getPaddleX();
     const paddleWidth = paddle.getPaddleWidth();
@@ -89,12 +89,12 @@ class Game {
     canvas.clear();
     canvas.getCtx().beginPath();
     paddle.drawPaddle(canvas);
-    brick.drawBricks(canvas);
+    brickGrid.drawBricks(canvas);
     ball.drawBall(canvas);
     player.drawScore(canvas);
     player.drawLives(canvas);
     this.drawCurrentGameMode(this.mode);
-    canvas.detectBrickCollisions(ball, brick, player);
+    canvas.detectBrickCollisions(ball, brickGrid, player);
     canvas.detectEdgeCollisions(ball, paddle, player);
 
     // game over
@@ -109,8 +109,8 @@ class Game {
 
     // marathon mode - reset brick grid when all bricks broken
     if (activeBrickCount === 0 && modeName === "marathon") {
-      brick.initializeBrickGrid();
-      brick.changeColor();
+      brickGrid.initializeBrickGrid();
+      brickGrid.changeColor();
     }
 
     // move paddle right until the right edge of the canvas
@@ -127,7 +127,7 @@ class Game {
       this.requestId = requestAnimationFrame(() => {
         this.draw(
           this.ball,
-          this.brick,
+          this.brickGrid,
           this.canvas,
           this.paddle,
           this.player
@@ -266,6 +266,14 @@ class Game {
     return value;
   };
 
+  public selectBrickColor = (e: Event): string => {
+    const { value } = <HTMLSelectElement>e.target;
+
+    this.brickGrid.setBrickColor(value)
+
+    return value;
+  }
+
   // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
     setScore(createScore(this.player.getScore(), this.mode.getMode().name));
@@ -299,6 +307,7 @@ class Game {
     );
     ballColorSelect?.addEventListener("change", this.selectBallColor, false);
     paddleColorSelect?.addEventListener("change", this.selectPaddleColor, false);
+    brickColorSelect?.addEventListener("change", this.selectBrickColor, false);
     // bootstrap events
     $("#aboutModal").on("hidden.bs.modal", () => {
       this.resumeGame();

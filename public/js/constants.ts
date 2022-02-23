@@ -177,3 +177,8 @@ export const ballColorSelect = document.querySelector<HTMLSelectElement>(
 export const paddleColorSelect = document.querySelector<HTMLSelectElement>(
   "#paddleColorSelect"
 );
+
+// brickGrid color select
+export const brickColorSelect = document.querySelector<HTMLSelectElement>(
+  "#brickColorSelect"
+);
