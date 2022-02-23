@@ -187,3 +187,8 @@ export const brickColorSelect = document.querySelector<HTMLSelectElement>(
 export const scoreBoardResetBtn = document.querySelector<HTMLButtonElement>(
   "#scoreBoardResetBtn"
 );
+
+// border toggle checkbox
+export const borderColorCheckBox = document.querySelector<HTMLInputElement>(
+  "#borderColorCheckBox"
+)

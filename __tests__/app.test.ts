@@ -173,6 +173,13 @@ describe("application", () => {
       expect(resetButton?.textContent).toBe("Reset scoreboard");
     });
 
+    test("it should have a checkbox to toggle borders", () => {
+      const borderCheckboxBtn = document.getElementById("borderColorCheckBox")
+
+      expect(borderCheckboxBtn).not.toBeNull()
+      expect(borderCheckboxBtn instanceof HTMLInputElement).toBe(true)
+    })
+
     describe("game mode select", () => {
 
       test("it should render correctly", () => {

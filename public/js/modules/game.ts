@@ -20,7 +20,7 @@ import {
   pastelOneRadio,
   pastelTwoRadio,
   pastelThreeRadio,
-  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect, scoreBoardResetBtn
+  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect, scoreBoardResetBtn, borderColorCheckBox
 } from "../constants";
 import { createScore, setScore, drawScoreBoardEntry, resetScoreBoard } from "../services/score";
 import { changeGameTheme } from "../services/theme";
@@ -278,6 +278,14 @@ class Game {
     resetScoreBoard();
   }
 
+  public toggleBorder = () => {
+    const canvas = document.querySelector('#myCanvas')
+
+    if (canvas != null) {
+      canvas.classList.add('canvas--showBorder')
+    }
+  }
+
   // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
     setScore(createScore(this.player.getScore(), this.mode.getMode().name));
@@ -343,6 +351,7 @@ class Game {
       false
     );
     scoreBoardResetBtn?.addEventListener("click", this.resetScoreBoard, false);
+    borderColorCheckBox?.addEventListener("change", this.toggleBorder, false)
   };
 }
 
