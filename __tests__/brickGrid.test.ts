@@ -7,8 +7,8 @@ import MockCanvas from "../public/js/modules/__mocks__/canvas";
 import Mode from "../public/js/modules/mode";
 import { GAME_MODES, modes } from "../public/js/constants";
 
-describe("brick", () => {
-  test("brick should have the right properties", () => {
+describe("brickGrid", () => {
+  test("brickGrid should have the right properties", () => {
     const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
     const brickGrid = new BrickGrid(mode);
 
