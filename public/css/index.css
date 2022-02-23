@@ -249,6 +249,14 @@ label[for="brickColorSelect"] {
     color: white;
 }
 
+#borderColorCheckBoxContainer {
+    margin-top: 15px;
+}
+
+.canvas--showBorder {
+    border: 1px solid white;
+}
+
 @media only screen and (max-width: 480px) {
     .btn-toolbar {
         flex-direction: column;

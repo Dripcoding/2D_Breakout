@@ -17,6 +17,10 @@ export interface ICanvas {
   getHeight(): number;
 
   getWidth(): number;
+
+  getBorderOn(): boolean;
+
+  setBorderOn(): void;
 }
 
 class Canvas implements ICanvas {
@@ -24,12 +28,14 @@ class Canvas implements ICanvas {
   private ctx: CanvasRenderingContext2D;
   readonly height: number;
   readonly width: number;
+  private borderOn: boolean;
 
   constructor() {
     this.canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.width = this.canvas.width;
     this.height = this.canvas.height;
+    this.borderOn = false;
   }
 
   public clear(): void {
@@ -136,6 +142,14 @@ class Canvas implements ICanvas {
 
   public getWidth(): number {
     return this.width;
+  }
+
+  public getBorderOn(): boolean {
+    return this.borderOn;
+  }
+
+  public setBorderOn(): void {
+    this.borderOn = !this.borderOn;
   }
 }
 
