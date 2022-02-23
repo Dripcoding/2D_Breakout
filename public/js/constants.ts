@@ -182,3 +182,8 @@ export const paddleColorSelect = document.querySelector<HTMLSelectElement>(
 export const brickColorSelect = document.querySelector<HTMLSelectElement>(
   "#brickColorSelect"
 );
+
+// scoreboard reset button
+export const scoreBoardResetBtn = document.querySelector<HTMLButtonElement>(
+  "#scoreBoardResetBtn"
+);

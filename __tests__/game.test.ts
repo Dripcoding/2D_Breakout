@@ -7,6 +7,7 @@ import Paddle from "../public/js/modules/paddle";
 import Player from "../public/js/modules/player";
 import { GAME_MODES, modes } from "../public/js/constants";
 import { changeGameTheme } from "../public/js/services/theme";
+import * as scoreService from "../public/js/services/score";
 
 jest.mock("../public/js/modules/canvas");
 jest.mock("../public/js/services/score");
@@ -221,6 +222,13 @@ describe("game", () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(mockEvent);
     expect(color).toBe(mockEvent.target.value);
+  })
+
+  test("resetScoreBoard", () => {
+    const spy = jest.spyOn(scoreService, "resetScoreBoard");
+    game.resetScoreBoard();
+
+    expect(spy).toHaveBeenCalledTimes(1)
   })
 
   describe("integration tests", () => {

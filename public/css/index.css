@@ -238,6 +238,17 @@ canvas {
     background-color: #272c34;
 }
 
+label[for="ballColorSelect"],
+label[for="paddleColorSelect"],
+label[for="brickColorSelect"] {
+    margin-top: 10px;
+}
+
+#scoreBoardResetBtn {
+    margin-top: 15px;
+    color: white;
+}
+
 @media only screen and (max-width: 480px) {
     .btn-toolbar {
         flex-direction: column;

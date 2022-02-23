@@ -6,6 +6,11 @@ interface Score {
   timestamp: string;
 }
 
+export const resetScoreBoard = (): void => {
+  window.localStorage.clear();
+  document.location.reload();
+};
+
 export const createScoreTimestamp = (): string => {
   const date = new Date();
 

@@ -20,9 +20,9 @@ import {
   pastelOneRadio,
   pastelTwoRadio,
   pastelThreeRadio,
-  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect
+  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect, scoreBoardResetBtn
 } from "../constants";
-import { createScore, setScore, drawScoreBoardEntry } from "../services/score";
+import { createScore, setScore, drawScoreBoardEntry, resetScoreBoard } from "../services/score";
 import { changeGameTheme } from "../services/theme";
 
 class Game {
@@ -274,6 +274,10 @@ class Game {
     return value;
   }
 
+  public resetScoreBoard = () => {
+    resetScoreBoard();
+  }
+
   // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
     setScore(createScore(this.player.getScore(), this.mode.getMode().name));
@@ -338,6 +342,7 @@ class Game {
       this.mouseClickHandler,
       false
     );
+    scoreBoardResetBtn?.addEventListener("click", this.resetScoreBoard, false);
   };
 }
 
