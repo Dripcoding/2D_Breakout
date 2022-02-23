@@ -26,7 +26,7 @@ describe("game", () => {
 
   test("game should have the right properties", () => {
     expect(game).toHaveProperty("ball");
-    expect(game).toHaveProperty("brick");
+    expect(game).toHaveProperty("brickGrid");
     expect(game).toHaveProperty("canvas");
     expect(game).toHaveProperty("paddle");
     expect(game).toHaveProperty("rightPressed");
@@ -205,13 +205,23 @@ describe("game", () => {
 
   test("selectPaddleColor", () => {
     const spy = jest.spyOn(game, "selectPaddleColor");
-    const mockEvent = { target: { value: " blue" } };
+    const mockEvent = { target: { value: "blue" } };
     const color = game.selectPaddleColor(mockEvent as any);
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(mockEvent);
     expect(color).toBe(mockEvent.target.value);
   });
+
+  test("selectBrickColor", () => {
+    const spy = jest.spyOn(game, "selectBrickColor");
+    const mockEvent = { target: { value: "white"} };
+    const color = game.selectBrickColor(mockEvent as any);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(mockEvent);
+    expect(color).toBe(mockEvent.target.value);
+  })
 
   describe("integration tests", () => {
     window.requestAnimationFrame = jest.fn();
