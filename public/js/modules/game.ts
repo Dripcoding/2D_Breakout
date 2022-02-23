@@ -269,22 +269,22 @@ class Game {
   public selectBrickColor = (e: Event): string => {
     const { value } = <HTMLSelectElement>e.target;
 
-    this.brickGrid.setBrickColor(value)
+    this.brickGrid.setBrickColor(value);
 
     return value;
-  }
+  };
 
   public resetScoreBoard = () => {
     resetScoreBoard();
-  }
+  };
 
   public toggleBorder = () => {
-    const canvas = document.querySelector('#myCanvas')
+    const canvas = document.querySelector("#myCanvas");
 
     if (canvas != null) {
-      canvas.classList.add('canvas--showBorder')
+      canvas.classList.add("canvas--showBorder");
     }
-  }
+  };
 
   // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
@@ -351,7 +351,7 @@ class Game {
       false
     );
     scoreBoardResetBtn?.addEventListener("click", this.resetScoreBoard, false);
-    borderColorCheckBox?.addEventListener("change", this.toggleBorder, false)
+    borderColorCheckBox?.addEventListener("change", this.toggleBorder, false);
   };
 }
 
