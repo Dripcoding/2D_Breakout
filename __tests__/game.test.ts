@@ -374,4 +374,11 @@ describe("game", () => {
       expect(spy).toHaveBeenCalled();
     });
   });
+  test("resetScoreBoard", () => {
+    const spy = jest.spyOn(scoreService, "resetScoreBoard");
+    game.resetScoreBoard();
+
+    expect(spy).toHaveBeenCalledTimes(1)
+  })
+
 });

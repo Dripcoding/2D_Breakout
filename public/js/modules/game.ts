@@ -279,11 +279,10 @@ class Game {
   };
 
   public toggleBorder = () => {
-    const canvas = document.querySelector("#myCanvas");
+    const myCanvas = document.querySelector("#myCanvas");
 
-    if (canvas != null) {
-      canvas.classList.add("canvas--showBorder");
-    }
+    this.canvas.getBorderOn() ? myCanvas?.classList.add("canvas--showBorder")
+      : myCanvas?.classList.remove("canvas--showBorder");
   };
 
   // tells user they either won, quit, or the game is over
