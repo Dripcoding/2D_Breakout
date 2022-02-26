@@ -322,15 +322,6 @@ class Game {
     paddleColorSelect?.addEventListener("change", this.selectPaddleColor, false);
     brickColorSelect?.addEventListener("change", this.selectBrickColor, false);
     // bootstrap events
-    $("#aboutModal").on("hidden.bs.modal", () => {
-      this.resumeGame();
-    });
-    $("#controlsModal").on("hidden.bs.modal", () => {
-      this.resumeGame();
-    });
-    $("#settingsModal").on("hidden.bs.modal", () => {
-      this.resumeGame();
-    });
     $("#gameEndModal").on("hidden.bs.modal", () => {
       document.location.reload();
     });
