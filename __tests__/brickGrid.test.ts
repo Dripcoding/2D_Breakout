@@ -53,6 +53,13 @@ describe("brickGrid", () => {
     expect(brickObject).toEqual(brickObjectProperties);
   });
 
+  test("brick grid should have a default color value", () => {
+    const mode = new Mode(modes[GAME_MODES.EASY]);
+    const brickGrid = new BrickGrid(mode);
+
+    expect(brickGrid.getBrickColor()).toBe("#dc004e");
+  })
+
   test("getBrickCount()", () => {
     const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);

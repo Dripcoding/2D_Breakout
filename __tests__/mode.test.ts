@@ -17,12 +17,12 @@ describe("mode", () => {
 
   test("getters and setter", () => {
     expect(mode.getMode()).toEqual({
-      dx: 1.5,
-      dy: -1.5,
+      dx: 2,
+      dy: -2,
       lives: 5,
-      maxDx: 2,
-      maxDy: -2,
-      name: "veryEasy"
+      maxDx: 2.5,
+      maxDy: -2.5,
+      name: "easy"
     });
 
     const newMode = {

@@ -51,7 +51,7 @@ class BrickGrid implements IBrickGrid {
 
   constructor(mode: any) {
     // brickGrid properties
-    this.brickColor = "#0095DD";
+    this.brickColor = "#dc004e";
     this.brickRowCount = 10;
     this.brickColumnCount = 7;
     this.activeBrickCount = this.getBrickCount();
