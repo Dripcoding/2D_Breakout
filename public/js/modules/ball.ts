@@ -44,14 +44,14 @@ class Ball implements IBall {
   private randomizeBallColor: boolean;
 
   constructor(public height: number, public width: number, public mode: any) {
-    this.ballColor = "#0095DD";
+    this.ballColor = "white";
     this.ballRadius = 10;
     this.mode = mode.getMode();
     // starting position
     this.x = width / 2;
     this.y = height - 30;
     // velocity - change in position
-    this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx;
+    this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx;1
     this.dy = Math.random() * (mode.maxDy - mode.dy) + mode.dy;
     this.randomizeBallColor = true;
   }

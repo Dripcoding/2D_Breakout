@@ -36,10 +36,16 @@ describe("ball", () => {
     expect(ball).toHaveProperty("setBallDy");
   });
 
+  test("ball's initial color should be white", () => {
+    const ball = new Ball(10, 10, mode);
+
+    expect(ball.getBallColor()).toBe("white");
+  })
+
   test("changeColor() should change a ball's color", () => {
     const ball = new Ball(10, 10, mode);
     const color = ball.getBallColor();
-    expect(color).toBe("#0095DD");
+    expect(color).toBe("white");
 
     const newColor = ball.changeColor();
     expect(color).not.toBe(newColor);
@@ -80,7 +86,7 @@ describe("ball", () => {
     const dy = ball.getBallDy();
     const randomizeBallColor = ball.getRandomizeBallColor();
 
-    expect(color).toBe("#0095DD");
+    expect(color).toBe("white");
     expect(radius).toBe(10);
     expect(x).toBe(canvas.width / 2);
     expect(y).toBe(canvas.height - 30);
