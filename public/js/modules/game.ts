@@ -1,11 +1,10 @@
-import Ball, { IBall } from "./ball";
+import { IBall } from "./ball";
 
 import { IBrickGrid } from "./brickGrid";
 import { ICanvas } from "./canvas";
 import { IGameMode } from "./mode";
 import { IPaddle } from "./paddle";
 import { IPlayer } from "./player";
-import Player from "./player";
 import {
   controlsModalLink,
   gameModeSelect,
@@ -138,7 +137,7 @@ class Game {
     }
   }
 
-  public drawCurrentGameMode(mode: IGameMode): void {
+  public drawCurrentGameMode(mode: any): void {
     const ctx = this.canvas.getCtx();
     const canvasWidth = this.canvas.getWidth();
     ctx.font = "24px Arial";
@@ -236,16 +235,13 @@ class Game {
 
   public selectGameMode = (e: Event): IGameMode => {
     const { value } = <HTMLSelectElement>e.target;
-    const canvasWidth = this.canvas.getHeight();
-    const canvasHeight = this.canvas.getWidth();
+    const newMode = modes[value];
 
-    this.mode.setMode(modes[value]);
+    this.mode.setMode(newMode);
+    this.ball.setMode(newMode);
+    this.player.setMode(newMode);
 
-    // todo: avoid creating new objects
-    this.ball = new Ball(canvasHeight, canvasWidth, this.mode);
-    this.player = new Player(this.mode);
-
-    this.drawCurrentGameMode(this.mode);
+    this.drawCurrentGameMode(newMode);
     return this.mode;
   };
 

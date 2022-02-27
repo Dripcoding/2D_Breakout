@@ -15,6 +15,8 @@ export interface IPlayer {
   setLives(lives: number): void;
 
   setScore(score: number): void;
+
+  setMode(mode: IMode): void;
 }
 
 class Player implements IPlayer {
@@ -66,6 +68,10 @@ class Player implements IPlayer {
 
   public setScore(score: number): void {
     this.score = score;
+  }
+
+  public setMode(mode: IMode): void {
+    this.mode = mode;
   }
 }
 
