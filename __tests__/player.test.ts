@@ -42,7 +42,7 @@ describe("player", () => {
       const canvas = new MockCanvas();
       const canvasHeight = canvas.getHeight();
       const canvasWidth = canvas.getWidth();
-      const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+      const mode = new Mode(modes[GAME_MODES.EASY]);
 
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brick = new BrickGrid(mode);

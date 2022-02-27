@@ -2,7 +2,7 @@ import Mode from "../public/js/modules/mode";
 import { GAME_MODES, modes } from "../public/js/constants";
 
 describe("mode", () => {
-  const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+  const mode = new Mode(modes[GAME_MODES.EASY]);
 
   test("mode should have the right properties", () => {
     expect(mode).toHaveProperty("dx");
@@ -17,12 +17,12 @@ describe("mode", () => {
 
   test("getters and setter", () => {
     expect(mode.getMode()).toEqual({
-      dx: 1.5,
-      dy: -1.5,
+      dx: 2,
+      dy: -2,
       lives: 5,
-      maxDx: 2,
-      maxDy: -2,
-      name: "veryEasy"
+      maxDx: 2.5,
+      maxDy: -2.5,
+      name: "easy"
     });
 
     const newMode = {

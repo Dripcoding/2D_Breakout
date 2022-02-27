@@ -38,7 +38,7 @@ describe("canvas", () => {
 
   describe("game interactions", () => {
     test("canvas draw functions should be called when game starts drawing", () => {
-      const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+      const mode = new Mode(modes[GAME_MODES.EASY]);
       const canvas = new MockCanvas();
       const canvasHeight = canvas.getHeight();
       const canvasWidth = canvas.getWidth();

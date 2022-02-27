@@ -54,9 +54,9 @@ describe("paddle", () => {
   describe("game interactions", () => {
     test("draw and update invocations while game draws", () => {
       const canvas = new MockCanvas();
+      const mode = new Mode(modes[GAME_MODES.EASY]);
       const canvasHeight = canvas.getHeight();
       const canvasWidth = canvas.getWidth();
-      const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
 
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brick = new BrickGrid(mode);
