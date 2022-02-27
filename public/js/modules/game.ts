@@ -137,7 +137,7 @@ class Game {
     }
   }
 
-  public drawCurrentGameMode(mode: any): void {
+  public drawCurrentGameMode(mode: IGameMode): void {
     const ctx = this.canvas.getCtx();
     const canvasWidth = this.canvas.getWidth();
     ctx.font = "24px Arial";
@@ -241,7 +241,7 @@ class Game {
     this.ball.setMode(newMode);
     this.player.setMode(newMode);
 
-    this.drawCurrentGameMode(newMode);
+    this.drawCurrentGameMode(this.mode);
     return this.mode;
   };
 
