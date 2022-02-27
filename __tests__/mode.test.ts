@@ -2,7 +2,7 @@ import Mode from "../public/js/modules/mode";
 import { GAME_MODES, modes } from "../public/js/constants";
 
 describe("mode", () => {
-  const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+  const mode = new Mode(modes[GAME_MODES.EASY]);
 
   test("mode should have the right properties", () => {
     expect(mode).toHaveProperty("dx");

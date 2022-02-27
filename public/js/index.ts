@@ -13,7 +13,7 @@ import { GAME_MODES, modes } from "./constants";
 const canvas = new Canvas();
 const canvasHeight = canvas.getHeight();
 const canvasWidth = canvas.getWidth();
-const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+const mode = new Mode(modes[GAME_MODES.EASY]);
 // game objects
 const ball = new Ball(canvasHeight, canvasWidth, mode);
 const brickGrid = new BrickGrid(mode);

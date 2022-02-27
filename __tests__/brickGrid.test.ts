@@ -9,7 +9,7 @@ import { GAME_MODES, modes } from "../public/js/constants";
 
 describe("brickGrid", () => {
   test("brickGrid should have the right properties", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
 
     expect(brickGrid).toHaveProperty("brickColor");
@@ -35,7 +35,7 @@ describe("brickGrid", () => {
   });
 
   test("bricks should be drawn on start", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
     const brickRows = brickGrid.getBricks()[0].length;
     const brickColumns = brickGrid.getBricks().length;
@@ -45,7 +45,7 @@ describe("brickGrid", () => {
   });
 
   test("brick objects should have the right default values", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
     const brickObject = brickGrid.getBricks()[0][0];
     const brickObjectProperties = { x: 0, y: 0, status: 1 };
@@ -54,7 +54,7 @@ describe("brickGrid", () => {
   });
 
   test("getBrickCount()", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
     const brickRowCount =
       brickGrid.getBrickColumnCount() * brickGrid.getBrickRowCount();
@@ -63,7 +63,7 @@ describe("brickGrid", () => {
   });
 
   test("calculateActiveBrickCount()", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
     // all bricks are active initially
     expect(brickGrid.calculateActiveBrickCount()).toBe(brickGrid.getBrickCount());
@@ -76,7 +76,7 @@ describe("brickGrid", () => {
   });
 
   test("setActiveBrickCount()", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
 
     brickGrid.setActiveBrickCount();
@@ -95,7 +95,7 @@ describe("brickGrid", () => {
   });
 
   test("initializeBrickGrid()", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brick = new BrickGrid(mode);
     const brickGrid = brick.initializeBrickGrid();
     const brickColumnCount = brickGrid.length;
@@ -107,7 +107,7 @@ describe("brickGrid", () => {
   });
 
   test("getters", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
 
     expect(brickGrid.getBrickColumnCount()).toBe(7);
@@ -118,7 +118,7 @@ describe("brickGrid", () => {
   });
 
   test("change brickGrid color", () => {
-    const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+    const mode = new Mode(modes[GAME_MODES.EASY]);
     const brickGrid = new BrickGrid(mode);
 
     brickGrid.setBrickColor('red')
@@ -130,7 +130,7 @@ describe("brickGrid", () => {
       const canvas = new MockCanvas();
       const canvasHeight = canvas.getHeight();
       const canvasWidth = canvas.getWidth();
-      const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+      const mode = new Mode(modes[GAME_MODES.EASY]);
 
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brickGrid = new BrickGrid(mode);

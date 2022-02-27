@@ -2,7 +2,6 @@
 import { IMode } from "./modules/mode";
 
 export enum GAME_MODES {
-  VERY_EASY = "Very Easy",
   EASY = "Easy",
   MEDIUM = "Medium",
   HARD = "Hard",
@@ -11,14 +10,6 @@ export enum GAME_MODES {
 }
 
 export const modes: { [index: string]: IMode } = {
-  [GAME_MODES.VERY_EASY]: {
-    dx: 1.5,
-    dy: -1.5,
-    lives: 5,
-    maxDx: 2,
-    maxDy: -2,
-    name: "veryEasy"
-  },
   [GAME_MODES.EASY]: {
     dx: 2,
     dy: -2,

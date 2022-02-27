@@ -10,7 +10,7 @@ import { GAME_MODES, modes } from "../public/js/constants";
 jest.mock("../public/js/modules/canvas");
 
 describe("ball", () => {
-  const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+  const mode = new Mode(modes[GAME_MODES.EASY]);
 
   test("ball should have the right properties", () => {
     const ball = new Ball(10, 10, mode);
@@ -104,7 +104,7 @@ describe("ball", () => {
   describe("game interactions", () => {
     test("draw and update methods should be called while game draws", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.VERY_EASY]);
+      const mode = new Mode(modes[GAME_MODES.EASY]);
       const canvasHeight = canvas.getHeight();
       const canvasWidth = canvas.getWidth();
 
