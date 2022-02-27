@@ -1,4 +1,5 @@
 import { ICanvas } from "./canvas";
+import { IMode } from "./mode";
 
 export interface IBall {
   changeColor(): void;
@@ -21,6 +22,8 @@ export interface IBall {
 
   getRandomizeBallColor(): boolean;
 
+  getMode(): IMode;
+
   setRandomizeBallColor(randomize: boolean): boolean;
 
   setBallColor(color: string): string;
@@ -32,6 +35,8 @@ export interface IBall {
   setBallDx(dx: number): void;
 
   setBallDy(dy: number): void;
+
+  setMode(mode: IMode): void;
 }
 
 class Ball implements IBall {
@@ -111,6 +116,10 @@ class Ball implements IBall {
     return this.randomizeBallColor;
   }
 
+  public getMode(): IMode {
+    return this.mode;
+  }
+
   public setRandomizeBallColor(randomize: boolean): boolean {
     return this.randomizeBallColor = randomize;
   }
@@ -133,6 +142,10 @@ class Ball implements IBall {
 
   public setBallDy(dy: number): void {
     this.dy = dy;
+  }
+
+  public setMode(mode: IMode):void {
+    this.mode = mode;
   }
 }
 

@@ -98,6 +98,7 @@ describe("ball", () => {
     ball.setBallDy(-dy);
     ball.setBallColor("white");
     ball.setRandomizeBallColor(false);
+    ball.setMode(modes[GAME_MODES.MARATHON]);
 
     expect(ball.getBallX()).toBe(-x);
     expect(ball.getBallY()).toBe(-y);
@@ -105,6 +106,7 @@ describe("ball", () => {
     expect(ball.getBallDy()).toBe(-dy);
     expect(ball.getBallColor()).toBe("white");
     expect(ball.getRandomizeBallColor()).toBe(false);
+    expect(ball.getMode()).toBe(modes[GAME_MODES.MARATHON]);
   });
 
   describe("game interactions", () => {
