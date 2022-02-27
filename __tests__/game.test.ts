@@ -235,9 +235,10 @@ describe("game", () => {
     window.requestAnimationFrame = jest.fn();
     window.cancelAnimationFrame = jest.fn();
 
+    const mode = new Mode(modes[GAME_MODES.EASY]);
+
     test("drawCurrentGameMode should be called when game draws", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
@@ -256,7 +257,6 @@ describe("game", () => {
 
     test("showGameEndModal should be called with 'You Win' message when game is over", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
@@ -280,7 +280,6 @@ describe("game", () => {
 
     test("showGameEndModal should be called with 'Game Over' message when game draws", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
@@ -305,7 +304,6 @@ describe("game", () => {
 
     test("paddle posiiton should update when user presses right arrow key", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
@@ -323,7 +321,6 @@ describe("game", () => {
     });
 
     test("paddle position should update when user presses left arrow key", () => {
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
@@ -343,7 +340,6 @@ describe("game", () => {
 
     test("requestAnimationFrame should be called when game is not paused", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
@@ -359,7 +355,6 @@ describe("game", () => {
 
     test("cancelAnimationFrame should be called when game is paused", () => {
       const canvas = new MockCanvas();
-      const mode = new Mode(modes[GAME_MODES.EASY]);
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode);
       const brick = new BrickGrid(mode);
