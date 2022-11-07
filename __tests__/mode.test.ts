@@ -9,19 +9,19 @@ describe("mode", () => {
     expect(mode).toHaveProperty("dy");
     expect(mode).toHaveProperty("lives");
     expect(mode).toHaveProperty("name");
-    expect(mode).toHaveProperty("getMode");
-    expect(mode).toHaveProperty("setMode");
+    expect(mode).toHaveProperty("getModeParam");
+    expect(mode).toHaveProperty("setModeParam");
     expect(mode).toHaveProperty("maxDx");
     expect(mode).toHaveProperty("maxDy");
   });
 
   test("getters and setter", () => {
-    expect(mode.getMode()).toEqual({
+    expect(mode.getModeParam()).toEqual({
       dx: 2,
-      dy: -2,
+      dy: 2,
       lives: 5,
-      maxDx: 2.5,
-      maxDy: -2.5,
+      maxDx: 3,
+      maxDy: 3,
       name: "easy"
     });
 
@@ -33,7 +33,7 @@ describe("mode", () => {
       maxDx: 9,
       maxDy: -9
     };
-    mode.setMode(newMode);
-    expect(mode.getMode()).toEqual(newMode);
+    mode.setModeParam(newMode);
+    expect(mode.getModeParam()).toEqual(newMode);
   });
 });

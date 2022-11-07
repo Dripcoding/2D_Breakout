@@ -13,12 +13,12 @@ import { GAME_MODES, modes } from "./constants";
 const canvas = new Canvas();
 const canvasHeight = canvas.getHeight();
 const canvasWidth = canvas.getWidth();
-const mode = new Mode(modes[GAME_MODES.EASY]);
+const mode = new Mode(modes[GAME_MODES.MEDIUM]);
 // game objects
 const ball = new Ball(canvasHeight, canvasWidth, mode);
 const brickGrid = new BrickGrid(mode);
 const paddle = new Paddle(canvas);
-const player = new Player(mode);
+const player = new Player(mode.getModeParam());
 const g = new Game(ball, brickGrid, canvas, mode, paddle, player); // instantiate a game
 
 g.init(); // start the game loop

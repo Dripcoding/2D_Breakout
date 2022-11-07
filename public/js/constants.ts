@@ -1,53 +1,53 @@
 // game modes
-import { IMode } from "./modules/mode";
+import { IModeParam } from "./modules/mode";
 
 export enum GAME_MODES {
-  EASY = "Easy",
-  MEDIUM = "Medium",
-  HARD = "Hard",
-  VERY_HARD = "Very Hard",
-  MARATHON = "Marathon"
+  EASY = "easy",
+  MEDIUM = "medium",
+  HARD = "hard",
+  VERY_HARD = "veryHard",
+  MARATHON = "marathon"
 }
 
-export const modes: { [index: string]: IMode } = {
+export const modes: { [index: string]: IModeParam } = {
   [GAME_MODES.EASY]: {
     dx: 2,
-    dy: -2,
+    dy: 2,
     lives: 5,
-    maxDx: 2.5,
-    maxDy: -2.5,
+    maxDx: 3,
+    maxDy: 3,
     name: "easy"
   },
   [GAME_MODES.MEDIUM]: {
-    dx: 2.5,
-    dy: -2.5,
+    dx: 3,
+    dy: 3,
     lives: 4,
-    maxDx: 3,
-    maxDy: -3,
+    maxDx: 5,
+    maxDy: 5,
     name: "medium"
   },
   [GAME_MODES.HARD]: {
-    dx: 3,
-    dy: -3,
+    dx: 5,
+    dy: 5,
     lives: 3,
-    maxDx: 3.5,
-    maxDy: -3.5,
+    maxDx: 10,
+    maxDy: 10,
     name: "hard"
   },
   [GAME_MODES.VERY_HARD]: {
-    dx: 3.5,
-    dy: -3.5,
-    lives: 4,
-    maxDx: 4,
-    maxDy: -4,
+    dx: 6,
+    dy: 6,
+    lives: 2,
+    maxDx: 15,
+    maxDy: 15,
     name: "veryHard"
   },
   [GAME_MODES.MARATHON]: {
-    dx: 1,
-    dy: -1,
+    dx: 7,
+    dy: 7,
     lives: 10,
-    maxDx: 3,
-    maxDy: -3,
+    maxDx: 8,
+    maxDy: 8,
     name: "marathon"
   }
 };

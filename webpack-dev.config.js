@@ -1,5 +1,5 @@
 const { merge } = require("webpack-merge");
-const commonConfig = require("./webpjs");
+const commonConfig = require("./webpack-common.config");
 
 module.exports = merge(commonConfig, {
   mode: "development",
@@ -8,5 +8,5 @@ module.exports = merge(commonConfig, {
     compress: true,
     hot: true
   },
-  devtool: "inline-source-map"
+  devtool: "source-map",
 });

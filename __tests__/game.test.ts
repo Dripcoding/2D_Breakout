@@ -20,7 +20,7 @@ describe("game", () => {
   const mode = new Mode(modes[GAME_MODES.EASY]);
   const canvas = new MockCanvas();
   const ball = new Ball(canvas.height, canvas.width, mode);
-  const player = new Player(mode);
+  const player = new Player(mode.getModeParam());
   const brick = new BrickGrid(mode);
   const paddle = new Paddle(canvas);
   const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -52,49 +52,21 @@ describe("game", () => {
   });
 
   test("selectGameMode", () => {
-    let mockEvent = { target: { value: "Easy" } };
-    const easyMode = {
-      dx: 2,
-      dy: -2,
-      lives: 5,
-      maxDx: 2.5,
-      maxDy: -2.5,
-      name: "easy"
-    };
-    expect(game.selectGameMode(mockEvent as any)).toEqual(easyMode);
+    let mockEvent = { target: { value: "easy" } };
 
-    mockEvent = { target: { value: "Medium" } };
-    const mediumMode = {
-      dx: 2.5,
-      dy: -2.5,
-      lives: 4,
-      maxDx: 3,
-      maxDy: -3,
-      name: "medium"
-    };
-    expect(game.selectGameMode(mockEvent as any)).toEqual(mediumMode);
+    expect(game.selectGameMode(mockEvent as any)).toEqual(modes["easy"]);
 
-    mockEvent = { target: { value: "Hard" } };
-    const hardMode = {
-      dx: 3,
-      dy: -3,
-      lives: 3,
-      maxDx: 3.5,
-      maxDy: -3.5,
-      name: "hard"
-    };
-    expect(game.selectGameMode(mockEvent as any)).toEqual(hardMode);
+    mockEvent = { target: { value: "medium" } };
 
-    mockEvent = { target: { value: "Very Hard" } };
-    const veryHardMode = {
-      dx: 3.5,
-      dy: -3.5,
-      lives: 4,
-      maxDx: 4,
-      maxDy: -4,
-      name: "veryHard"
-    };
-    expect(game.selectGameMode(mockEvent as any)).toEqual(veryHardMode);
+    expect(game.selectGameMode(mockEvent as any)).toEqual(modes["medium"]);
+
+    mockEvent = { target: { value: "hard" } };
+
+    expect(game.selectGameMode(mockEvent as any)).toEqual(modes["hard"]);
+
+    mockEvent = { target: { value: "veryHard" } };
+
+    expect(game.selectGameMode(mockEvent as any)).toEqual(modes["veryHard"]);
   });
 
   test("keyDownHandler", () => {
@@ -240,7 +212,7 @@ describe("game", () => {
     test("drawCurrentGameMode should be called when game draws", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -258,7 +230,7 @@ describe("game", () => {
     test("showGameEndModal should be called with 'You Win' message when game is over", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -281,7 +253,7 @@ describe("game", () => {
     test("showGameEndModal should be called with 'Game Over' message when game draws", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -305,7 +277,7 @@ describe("game", () => {
     test("paddle posiiton should update when user presses right arrow key", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -323,7 +295,7 @@ describe("game", () => {
     test("paddle position should update when user presses left arrow key", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -341,7 +313,7 @@ describe("game", () => {
     test("requestAnimationFrame should be called when game is not paused", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -356,7 +328,7 @@ describe("game", () => {
     test("cancelAnimationFrame should be called when game is paused", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);

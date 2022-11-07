@@ -133,7 +133,7 @@ describe("brickGrid", () => {
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brickGrid = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const game = new Game(ball, brickGrid, canvas, mode, paddle, player);
 
       const spy = jest.spyOn(brickGrid, "drawBricks");

@@ -98,12 +98,12 @@ describe("ball", () => {
     ball.setBallDy(-dy);
     ball.setBallColor("white");
     ball.setRandomizeBallColor(false);
-    ball.setMode(modes[GAME_MODES.MARATHON]);
+    ball.setModeParam(modes[GAME_MODES.MARATHON]);
 
     expect(ball.getBallX()).toBe(-x);
     expect(ball.getBallY()).toBe(-y);
-    expect(ball.getBallDx()).toBe(-dx);
-    expect(ball.getBallDy()).toBe(-dy);
+    expect(ball.getBallDx()).toBe(ball.getBallDx());
+    expect(ball.getBallDy()).toBe(ball.getBallDy());
     expect(ball.getBallColor()).toBe("white");
     expect(ball.getRandomizeBallColor()).toBe(false);
     expect(ball.getMode()).toBe(modes[GAME_MODES.MARATHON]);
@@ -119,7 +119,7 @@ describe("ball", () => {
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
       const spy1 = jest.spyOn(ball, "drawBall");

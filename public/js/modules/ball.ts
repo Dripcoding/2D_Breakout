@@ -1,5 +1,5 @@
 import { ICanvas } from "./canvas";
-import { IMode } from "./mode";
+import { IMode, IModeParam } from "./mode";
 
 export interface IBall {
   changeColor(): void;
@@ -22,7 +22,7 @@ export interface IBall {
 
   getRandomizeBallColor(): boolean;
 
-  getMode(): IMode;
+  getMode(): IModeParam;
 
   setRandomizeBallColor(randomize: boolean): boolean;
 
@@ -36,7 +36,7 @@ export interface IBall {
 
   setBallDy(dy: number): void;
 
-  setMode(mode: IMode): void;
+  setModeParam(mode: IModeParam): void;
 }
 
 class Ball implements IBall {
@@ -47,17 +47,19 @@ class Ball implements IBall {
   private x: number;
   private y: number;
   private randomizeBallColor: boolean;
+  private modeParam: IModeParam;
 
-  constructor(public height: number, public width: number, public mode: any) {
+  constructor(public height: number, public width: number, public mode: IMode) {
     this.ballColor = "white";
     this.ballRadius = 10;
-    this.mode = mode.getMode();
+    this.mode = mode;
+    this.modeParam = this.mode.getModeParam();
     // starting position
     this.x = width / 2;
     this.y = height - 30;
     // velocity - change in position
-    this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx;1
-    this.dy = Math.random() * (mode.maxDy - mode.dy) + mode.dy;
+    this.dx = Math.random() * (this.modeParam.maxDx - this.modeParam.dx) + this.modeParam.dx;
+    this.dy = Math.random() * (this.modeParam.maxDy - this.modeParam.dy) + this.modeParam.dy;
     this.randomizeBallColor = true;
   }
 
@@ -116,8 +118,8 @@ class Ball implements IBall {
     return this.randomizeBallColor;
   }
 
-  public getMode(): IMode {
-    return this.mode;
+  public getMode(): IModeParam {
+    return this.modeParam;
   }
 
   public setRandomizeBallColor(randomize: boolean): boolean {
@@ -144,8 +146,10 @@ class Ball implements IBall {
     this.dy = dy;
   }
 
-  public setMode(mode: IMode):void {
-    this.mode = mode;
+  public setModeParam(mode: IModeParam):void {
+    this.modeParam = mode;
+    this.dx = mode.maxDx;
+    this.dy = mode.maxDy;
   }
 }
 

@@ -79,7 +79,7 @@ class Game {
   ): void {
     const activeBrickCount = brickGrid.getActiveBrickCount();
     const brickCount = brickGrid.getBrickCount();
-    const modeName = this.mode.getMode().name;
+    const modeName = this.mode.getModeParam().name;
     const paddleX = paddle.getPaddleX();
     const paddleWidth = paddle.getPaddleWidth();
     const playerLives = player.getLives();
@@ -142,7 +142,7 @@ class Game {
     const canvasWidth = this.canvas.getWidth();
     ctx.font = "24px Arial";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText("Mode: " + mode.getMode().name, canvasWidth / 2 - 90, 20);
+    ctx.fillText("Mode: " + mode.getModeParam().name, canvasWidth / 2 - 90, 20);
   }
 
   // check if a key was pressed
@@ -234,14 +234,17 @@ class Game {
   };
 
   public selectGameMode = (e: Event): IGameMode => {
+    this.pauseGame();
+
     const { value } = <HTMLSelectElement>e.target;
     const newMode = modes[value];
 
-    this.mode.setMode(newMode);
-    this.ball.setMode(newMode);
-    this.player.setMode(newMode);
+    this.mode.setModeParam(newMode);
+    this.ball.setModeParam(newMode);
+    this.player.setModeParam(newMode);
 
     this.drawCurrentGameMode(this.mode);
+
     return this.mode;
   };
 
@@ -285,7 +288,7 @@ class Game {
 
   // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
-    setScore(createScore(this.player.getScore(), this.mode.getMode().name));
+    setScore(createScore(this.player.getScore(), this.mode.getModeParam().name));
     gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null;
     gameEndModalBody
       ? (gameEndModalBody.innerHTML = `<p>${message}</p>`)
@@ -296,50 +299,50 @@ class Game {
 
   public addEventListeners = (): void => {
     // listen for key press and key release
-    window.addEventListener("keydown", this.keyDownHandler, false);
-    window.addEventListener("keyup", this.keyUpHandler, false);
+    window.addEventListener("keydown", this.keyDownHandler.bind(this), false);
+    window.addEventListener("keyup", this.keyUpHandler.bind(this), false);
     // listen for mouse movement
-    window.addEventListener("mousemove", this.mouseMoveHandler, false);
+    window.addEventListener("mousemove", this.mouseMoveHandler.bind(this), false);
     // listen for clicks on modal links
-    aboutModalLink?.addEventListener("click", this.mouseClickHandler, false);
+    aboutModalLink?.addEventListener("click", this.mouseClickHandler.bind(this), false);
     controlsModalLink?.addEventListener(
       "click",
-      this.mouseClickHandler,
+      this.mouseClickHandler.bind(this),
       false
     );
     // game object settings changes
-    gameModeSelect?.addEventListener("change", this.selectGameMode, false);
+    gameModeSelect?.addEventListener("change", this.selectGameMode.bind(this), false);
     settingsModalLink?.addEventListener(
       "click",
-      this.mouseClickHandler,
+      this.mouseClickHandler.bind(this),
       false
     );
-    ballColorSelect?.addEventListener("change", this.selectBallColor, false);
-    paddleColorSelect?.addEventListener("change", this.selectPaddleColor, false);
-    brickColorSelect?.addEventListener("change", this.selectBrickColor, false);
+    ballColorSelect?.addEventListener("change", this.selectBallColor.bind(this), false);
+    paddleColorSelect?.addEventListener("change", this.selectPaddleColor.bind(this), false);
+    brickColorSelect?.addEventListener("change", this.selectBrickColor.bind(this), false);
     // bootstrap events
     $("#gameEndModal").on("hidden.bs.modal", () => {
       document.location.reload();
     });
     // list for tool bar events
-    playBtn?.addEventListener("click", this.mouseClickHandler, false);
-    pauseBtn?.addEventListener("click", this.mouseClickHandler, false);
-    resetBtn?.addEventListener("click", this.mouseClickHandler, false);
+    playBtn?.addEventListener("click", this.mouseClickHandler.bind(this), false);
+    pauseBtn?.addEventListener("click", this.mouseClickHandler.bind(this), false);
+    resetBtn?.addEventListener("click", this.mouseClickHandler.bind(this), false);
     // listen for theme changes
-    pastelOneRadio?.addEventListener("click", this.mouseClickHandler, false);
-    pastelTwoRadio?.addEventListener("click", this.mouseClickHandler, false);
+    pastelOneRadio?.addEventListener("click", this.mouseClickHandler.bind(this), false);
+    pastelTwoRadio?.addEventListener("click", this.mouseClickHandler.bind(this), false);
     pastelThreeRadio?.addEventListener(
       "click",
-      this.mouseClickHandler,
+      this.mouseClickHandler.bind(this),
       false
     );
     pastelDefaultRadio?.addEventListener(
       "click",
-      this.mouseClickHandler,
+      this.mouseClickHandler.bind(this),
       false
     );
-    scoreBoardResetBtn?.addEventListener("click", this.resetScoreBoard, false);
-    borderColorCheckBox?.addEventListener("change", this.toggleBorder, false);
+    scoreBoardResetBtn?.addEventListener("click", this.resetScoreBoard.bind(this), false);
+    borderColorCheckBox?.addEventListener("change", this.toggleBorder.bind(this), false);
   };
 }
 
