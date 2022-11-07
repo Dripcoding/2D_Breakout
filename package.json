@@ -14,6 +14,9 @@
     "test-watch": "jest --watch",
     "watch": "webpack --watch"
   },
+  "engines": {
+    "node": "16.13.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JustinSHong/2D_Breakout.git"
