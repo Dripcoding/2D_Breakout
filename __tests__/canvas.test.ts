@@ -46,7 +46,7 @@ describe("canvas", () => {
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
       const spy1 = jest.spyOn(canvas, "clear");

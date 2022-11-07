@@ -9,7 +9,7 @@ import { GAME_MODES, modes } from "../public/js/constants";
 
 describe("player", () => {
   test("player should have the right properties", () => {
-    const mode = { name: "very easy", dx: 1.5, dy: -1.5, lives: 5 };
+    const mode = { name: "very easy", dx: 1.5, dy: -1.5, lives: 5, maxDx: 2.5, maxDy: 2.5 };
     const player = new Player(mode);
 
     expect(player).toHaveProperty("lives");
@@ -24,7 +24,7 @@ describe("player", () => {
   });
 
   test("getters and setters", () => {
-    const mode = { name: "very easy", dx: 1.5, dy: -1.5, lives: 5 };
+    const mode = { name: "very easy", dx: 1.5, dy: -1.5, lives: 5, maxDx: 2.5, maxDy: 2.5 };
     const player = new Player(mode);
 
     expect(player.getLives()).toBe(5);
@@ -47,7 +47,7 @@ describe("player", () => {
       const ball = new Ball(canvasHeight, canvasWidth, mode);
       const brick = new BrickGrid(mode);
       const paddle = new Paddle(canvas);
-      const player = new Player(mode);
+      const player = new Player(mode.getModeParam());
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
       const spy1 = jest.spyOn(player, "drawScore");

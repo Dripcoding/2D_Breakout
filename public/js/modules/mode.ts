@@ -1,10 +1,10 @@
 export interface IGameMode {
-  getMode(): IMode;
+  getModeParam(): IModeParam;
 
-  setMode(mode: IMode): void;
+  setModeParam(mode: IModeParam): void;
 }
 
-export interface IMode {
+export interface IModeParam {
   dx: number;
   dy: number;
   lives: number;
@@ -13,7 +13,12 @@ export interface IMode {
   name: string;
 }
 
-class Mode {
+export interface IMode {
+  getModeParam: () => IModeParam;
+  setModeParam: (mode: IModeParam) => void;
+}
+
+class Mode implements IMode {
   private dx: number;
   private dy: number;
   private lives: number;
@@ -21,7 +26,7 @@ class Mode {
   private maxDy: number;
   private name: string;
 
-  constructor(mode: IMode) {
+  constructor(mode: IModeParam) {
     this.dx = mode.dx;
     this.dy = mode.dy;
     this.lives = mode.lives;
@@ -30,7 +35,7 @@ class Mode {
     this.name = mode.name;
   }
 
-  public getMode(): IMode {
+  public getModeParam(): IModeParam {
     return {
       dx: this.dx,
       dy: this.dy,
@@ -41,7 +46,7 @@ class Mode {
     };
   }
 
-  public setMode(mode: IMode): void {
+  public setModeParam(mode: IModeParam): void {
     const { dx, dy, lives, maxDx, maxDy, name } = mode;
 
     this.dx = dx;

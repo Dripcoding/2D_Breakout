@@ -1,5 +1,5 @@
 import { ICanvas } from "./canvas";
-import { IMode } from "./mode";
+import { IModeParam } from "./mode";
 
 export interface IBrickGrid {
   calculateActiveBrickCount(): number;
@@ -47,7 +47,7 @@ class BrickGrid implements IBrickGrid {
   private brickWidth: number;
   private brickHeight: number;
   private bricks: IBrickObject[][];
-  private mode: IMode;
+  private mode: IModeParam;
 
   constructor(mode: any) {
     // brickGrid properties
@@ -170,7 +170,7 @@ class BrickGrid implements IBrickGrid {
     return this.bricks;
   }
 
-  public getMode(): IMode {
+  public getMode(): IModeParam {
     return this.mode;
   }
 }

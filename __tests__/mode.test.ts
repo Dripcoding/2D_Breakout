@@ -16,7 +16,7 @@ describe("mode", () => {
   });
 
   test("getters and setter", () => {
-    expect(mode.getMode()).toEqual({
+    expect(mode.getModeParam()).toEqual({
       dx: 2,
       dy: -2,
       lives: 5,
@@ -33,7 +33,7 @@ describe("mode", () => {
       maxDx: 9,
       maxDy: -9
     };
-    mode.setMode(newMode);
-    expect(mode.getMode()).toEqual(newMode);
+    mode.setModeParam(newMode);
+    expect(mode.getModeParam()).toEqual(newMode);
   });
 });

@@ -1,5 +1,5 @@
 import { ICanvas } from "./canvas";
-import { IMode } from "./mode";
+import { IModeParam } from "./mode";
 
 export interface IPlayer {
   drawScore(canvas: ICanvas): void;
@@ -8,7 +8,7 @@ export interface IPlayer {
 
   getLives(): number;
 
-  getMode(): IMode;
+  getMode(): IModeParam;
 
   getScore(): number;
 
@@ -16,14 +16,14 @@ export interface IPlayer {
 
   setScore(score: number): void;
 
-  setMode(mode: IMode): void;
+  setModeParam(mode: IModeParam): void;
 }
 
 class Player implements IPlayer {
   private lives: number;
   private score: number;
 
-  constructor(public mode: any) {
+  constructor(public mode: IModeParam) {
     this.lives = mode.lives;
     this.mode = mode;
     this.score = 0;
@@ -54,7 +54,7 @@ class Player implements IPlayer {
     return this.lives;
   }
 
-  public getMode(): IMode {
+  public getMode(): IModeParam {
     return this.mode;
   }
 
@@ -70,8 +70,9 @@ class Player implements IPlayer {
     this.score = score;
   }
 
-  public setMode(mode: IMode): void {
+  public setModeParam(mode: IModeParam): void {
     this.mode = mode;
+    this.lives = this.mode.lives;
   }
 }
 

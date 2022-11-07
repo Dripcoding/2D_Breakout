@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack --config webpack-prod.config.js",
     "start": "node server.js",
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --open --d",
     "lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
     "lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
     "lhc-no-emulation": "lhci autorun --config=./lighthouse-noEmulation-noThrottle.js",
