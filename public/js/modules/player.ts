@@ -29,7 +29,6 @@ class Player implements IPlayer {
     this.score = 0;
   }
 
-  // draw current score to the canvas
   public drawScore(canvas: ICanvas): number {
     const ctx = canvas.getCtx();
 
@@ -39,7 +38,6 @@ class Player implements IPlayer {
     return this.score;
   }
 
-  // draw current number of lives to the canvas
   public drawLives(canvas: ICanvas): number {
     const ctx = canvas.getCtx();
     const canvasWidth = canvas.getWidth();

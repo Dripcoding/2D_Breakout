@@ -44,7 +44,7 @@ describe("canvas", () => {
       const canvasWidth = canvas.getWidth();
 
       const ball = new Ball(canvasHeight, canvasWidth, mode);
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const player = new Player(mode.getModeParam());
       const game = new Game(ball, brick, canvas, mode, paddle, player);
@@ -65,7 +65,7 @@ describe("canvas", () => {
       expect(spy3).toHaveBeenCalledTimes(1);
 
       expect(spy4).toHaveBeenCalled();
-      expect(spy4).toHaveBeenCalledTimes(2);
+      expect(spy4).toHaveBeenCalledTimes(3);
     });
   });
 });

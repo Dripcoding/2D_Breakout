@@ -117,7 +117,7 @@ describe("ball", () => {
       const canvasWidth = canvas.getWidth();
 
       const ball = new Ball(canvasHeight, canvasWidth, mode);
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const player = new Player(mode.getModeParam());
       const game = new Game(ball, brick, canvas, mode, paddle, player);

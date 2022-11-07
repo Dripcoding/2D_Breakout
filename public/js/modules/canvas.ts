@@ -42,47 +42,64 @@ class Canvas implements ICanvas {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
 
-  // detect collisions against canvas edges
   public detectEdgeCollisions(
     ball: IBall,
     paddle: IPaddle,
     player: IPlayer
   ): void {
-    const ballX = ball.getBallX();
-    const ballY = ball.getBallY();
     const ballDx = ball.getBallDx();
     const ballDy = ball.getBallDy();
-    const ballRadius = ball.getBallRadius();
-    const paddleX = paddle.getPaddleX();
     const paddleHeight = paddle.getPaddleHeight();
-    const paddleWidth = paddle.getPaddleWidth();
     const playerLives = player.getLives();
 
-    // detect collisions with top edge
-    if (ballY + ballDy < ballRadius) {
+    if (this.isCollidingWithTopEdge(ball)) {
       ball.setBallDy(-ballDy);
       ball.changeColor();
-    } else if (ballY + ballDy >= this.height - paddleHeight) {
-      if (ballX >= paddleX && ballX <= paddleX + paddleWidth) {
-        // ball collides with the paddle
-        ball.setBallDy(-ballDy);
-        ball.changeColor();
-      } else {
-        // ball misses the paddle
+    } else if (this.isApproachingBottomEdge(ball, paddleHeight) && this.isCollidingWithPaddle(ball, paddle)) {
+      ball.setBallDy(-ballDy);
+      ball.changeColor();
+    } else if (this.isApproachingBottomEdge(ball, paddleHeight)) {
         player.setLives(playerLives - 1);
         ball.setBallX(this.width / 2);
         ball.setBallY(this.height - 30);
         ball.setBallDy(-ballDy);
-      }
     }
-    // detect collision with left and right edges
-    if (
-      ballX + ballDx < ballRadius ||
-      ballX + ballDx > this.width - ballRadius
-    ) {
+
+    if (this.isCollidingWithSides(ball)) {
       ball.setBallDx(-ballDx);
       ball.changeColor();
     }
+  }
+
+  private isCollidingWithPaddle(ball: IBall, paddle: IPaddle): boolean {
+    const ballX = ball.getBallX();
+    const paddleX = paddle.getPaddleX();
+    const paddleWidth = paddle.getPaddleWidth();
+
+    return ballX >= paddleX && ballX <= paddleX + paddleWidth;
+  }
+
+  private isApproachingBottomEdge(ball: IBall, paddleHeight: number): boolean {
+    const ballY = ball.getBallY();
+    const ballDy = ball.getBallDy();
+
+    return ballY + ballDy >= this.height - paddleHeight;
+  }
+
+  private isCollidingWithSides(ball: IBall): boolean {
+    const ballX = ball.getBallX();
+    const ballDx = ball.getBallDx();
+    const ballRadius = ball.getBallRadius();
+
+    return ballX + ballDx < ballRadius || ballX + ballDx > this.width - ballRadius
+  }
+
+  private isCollidingWithTopEdge(ball: IBall): boolean {
+    const ballY = ball.getBallY();
+    const ballDy = ball.getBallDy();
+    const ballRadius = ball.getBallRadius();
+
+    return ballY + ballDy < ballRadius;
   }
 
   public detectBrickCollisions(
@@ -103,29 +120,34 @@ class Canvas implements ICanvas {
     // compare position of bricks with the ball for every frame
     for (let col = 0; col < brickColumnCount; col++) {
       for (let row = 0; row < brickRowCount; row++) {
-        let b = bricks[col][row];
+        const brick = bricks[col][row];
 
-        if (b.status === 1) {
+        if (brick.status === 1) {
           // a collision with a brick occurs when the center of the ball is inside a brick's coordinates
           // if a collision occurs, change the movement of the ball, a brick's status, score
           if (
-            ballX > b.x && // x position of the ball is greater than the x position of the brick
-            ballX < b.x + brickWidth && // x position of the ball is less than the x position of the brick plus its width
-            ballY > b.y && // y position of the ball is greater than the y position of the brick
-            ballY < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
+            this.isCollidingWithBrickLeftAndRightEdge(ballX, brick.x, brickWidth) &&
+            this.isCollidingWithBrickTopAndBottomEdge(ballY, brick.y, brickHeight)
           ) {
             ball.setBallDy(-ballDy);
             if (ball.getRandomizeBallColor()) {
               ball.changeColor();
             }
-            b.status = 0;
-            // player.score++
+            brick.status = 0;
             player.setScore(playerScore + 1);
             brickGrid.setActiveBrickCount();
           }
         }
       }
     }
+  }
+
+  private isCollidingWithBrickLeftAndRightEdge(ballX: number, brickX: number, brickWidth: number): boolean {
+    return ballX > brickX && ballX < brickX + brickWidth;
+  }
+
+  private isCollidingWithBrickTopAndBottomEdge(ballY: number, brickY: number, brickHeight: number) {
+    return ballY > brickY && ballY < brickY + brickHeight;
   }
 
   public getCanvas(): HTMLCanvasElement {

@@ -1,6 +1,12 @@
 import { ICanvas } from "./canvas";
 import { IMode, IModeParam } from "./mode";
 
+interface IPoint {
+  x: number;
+
+  y: number;
+}
+
 export interface IBall {
   changeColor(): void;
 
@@ -57,7 +63,7 @@ class Ball implements IBall {
     // starting position
     this.x = width / 2;
     this.y = height - 30;
-    // velocity - change in position
+    // starting velocity
     this.dx = Math.random() * (this.modeParam.maxDx - this.modeParam.dx) + this.modeParam.dx;
     this.dy = Math.random() * (this.modeParam.maxDy - this.modeParam.dy) + this.modeParam.dy;
     this.randomizeBallColor = true;
@@ -84,7 +90,7 @@ class Ball implements IBall {
     ctx.closePath();
   }
 
-  public update(): { x: number; y: number } {
+  public update(): IPoint {
     this.x += this.dx;
     this.y += this.dy;
     return { x: this.x, y: this.y };

@@ -19,7 +19,13 @@ import {
   pastelOneRadio,
   pastelTwoRadio,
   pastelThreeRadio,
-  pastelDefaultRadio, ballColorSelect, paddleColorSelect, brickColorSelect, scoreBoardResetBtn, borderColorCheckBox
+  pastelDefaultRadio,
+  ballColorSelect,
+  paddleColorSelect,
+  brickColorSelect,
+  scoreBoardResetBtn,
+  borderColorCheckBox,
+  IPastelDict
 } from "../constants";
 import { createScore, setScore, drawScoreBoardEntry, resetScoreBoard } from "../services/score";
 import { changeGameTheme } from "../services/theme";
@@ -52,11 +58,10 @@ class Game {
     this.requestId = 0;
 
     this.addEventListeners();
-    // draw scoreboard on page load
+
     drawScoreBoardEntry();
   }
 
-  // initialize the game objects and the game loop
   public init(): void {
     this.requestId = requestAnimationFrame(() =>
       this.draw(
@@ -69,7 +74,6 @@ class Game {
     );
   }
 
-  // main draw function of the game - initiates game loop
   public draw(
     ball: IBall,
     brickGrid: IBrickGrid,
@@ -84,8 +88,10 @@ class Game {
     const paddleWidth = paddle.getPaddleWidth();
     const playerLives = player.getLives();
     const playerScore = player.getScore();
-    // clear canvas before drawing
+
     canvas.clear();
+
+    // start drawing
     canvas.getCtx().beginPath();
     paddle.drawPaddle(canvas);
     brickGrid.drawBricks(canvas);
@@ -93,32 +99,31 @@ class Game {
     player.drawScore(canvas);
     player.drawLives(canvas);
     this.drawCurrentGameMode(this.mode);
+
+    // game loop logic
     canvas.detectBrickCollisions(ball, brickGrid, player);
     canvas.detectEdgeCollisions(ball, paddle, player);
 
-    // game over
     if (playerLives === 0) {
       this.showGameEventModal("Game Over", "You lost. Game Over!");
     }
 
-    // player wins - all bricks broken
-    if (playerScore == brickCount && modeName !== "marathon") {
+    if (this.hasPlayerWon(playerScore, brickCount, modeName)) {
       this.showGameEventModal("You Win", "You Win! Congrats!");
     }
 
-    // marathon mode - reset brick grid when all bricks broken
-    if (activeBrickCount === 0 && modeName === "marathon") {
+    if (this.hasPlayerWonMarathonMode(activeBrickCount, modeName)) {
       brickGrid.initializeBrickGrid();
       brickGrid.changeColor();
     }
 
     // move paddle right until the right edge of the canvas
-    if (this.rightPressed && paddleX < canvas.getWidth() - paddleWidth) {
+    if (this.hasPlayerMovedRight(paddleX, paddleWidth, canvas.getWidth())) {;
       paddle.update(7);
-    } else if (this.leftPressed && paddleX > 0) {
+    } else if (this.hasPlayerMovedLeft(paddleX)) {
       paddle.update(-7);
     }
-    // update ball's position
+
     ball.update();
 
     if (!this.pause) {
@@ -137,6 +142,22 @@ class Game {
     }
   }
 
+  private hasPlayerMovedRight(paddleX: number, paddleWidth: number, canvasWidth: number): boolean {
+    return this.rightPressed && paddleX < canvasWidth - paddleWidth;
+  }
+
+  private  hasPlayerMovedLeft(paddleX: number): boolean {
+    return this.leftPressed && paddleX > 0;
+  }
+
+  private hasPlayerWon(playerScore: number, brickCount: number, modeName: string): boolean {
+    return playerScore == brickCount && modeName !== "marathon"
+  }
+
+  private hasPlayerWonMarathonMode(activeBrickCount: number, modeName: string): boolean {
+    return activeBrickCount === 0 && modeName === "marathon";
+  }
+
   public drawCurrentGameMode(mode: IGameMode): void {
     const ctx = this.canvas.getCtx();
     const canvasWidth = this.canvas.getWidth();
@@ -145,16 +166,12 @@ class Game {
     ctx.fillText("Mode: " + mode.getModeParam().name, canvasWidth / 2 - 90, 20);
   }
 
-  // check if a key was pressed
   public keyDownHandler = (e: KeyboardEvent): string => {
     if (e.key === "ArrowRight") {
-      // right cursor key pressed
       this.rightPressed = true;
     } else if (e.key === "ArrowLeft") {
-      // left cursor key pressed
       this.leftPressed = true;
     } else if (e.key === "p") {
-      // pause key pressed
       this.pauseGame();
     } else if (e.key === "q") {
       this.showGameEventModal("Game Over", "You quit. Game Over!");
@@ -163,14 +180,10 @@ class Game {
     return e.key;
   };
 
-  // check if a key was released
   public keyUpHandler = (e: KeyboardEvent): string => {
-    // reset key state to default
     if (e.key === "ArrowRight") {
-      // right cursor key released
       this.rightPressed = false;
     } else if (e.key === "ArrowLeft") {
-      // left cursor key released
       this.leftPressed = false;
     }
 
@@ -184,25 +197,29 @@ class Game {
       this.resumeGame();
     } else if (id === "resetBtn") {
       document.location.reload();
-    } else if (
-      id === "settingsModalLink" ||
-      id === "controlsModalLink" ||
-      id === "aboutModalLink" ||
-      id === "pauseBtn"
-    ) {
+    } else if (this.shouldPauseGame(id)) {
       this.pauseGame();
-    } else if (
-      id === "pastelOneRadio" ||
-      id === "pastelTwoRadio" ||
-      id === "pastelThreeRadio" ||
-      id === "pastelDefaultRadio"
-    ) {
-      changeGameTheme(id);
+    } else if (this.shouldChangeTheme(id)) {
+      changeGameTheme(id as keyof IPastelDict);
     }
+
     return id;
   };
 
-  // move paddle relative to the mouse position within canvas
+  public shouldPauseGame(id: string): boolean {
+    return id === "settingsModalLink" ||
+      id === "controlsModalLink" ||
+      id === "aboutModalLink" ||
+      id === "pauseBtn";
+  }
+
+  public shouldChangeTheme(id: string): boolean {
+    return id === "pastelOneRadio" ||
+      id === "pastelTwoRadio" ||
+      id === "pastelThreeRadio" ||
+      id === "pastelDefaultRadio"
+  }
+
   public mouseMoveHandler = (e: MouseEvent): void => {
     if (this.pause) {
       return;
@@ -286,7 +303,6 @@ class Game {
       : myCanvas?.classList.remove("canvas--showBorder");
   };
 
-  // tells user they either won, quit, or the game is over
   public showGameEventModal = (title: string, message: string): void => {
     setScore(createScore(this.player.getScore(), this.mode.getModeParam().name));
     gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null;
