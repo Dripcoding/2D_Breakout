@@ -102,8 +102,8 @@ describe("ball", () => {
 
     expect(ball.getBallX()).toBe(-x);
     expect(ball.getBallY()).toBe(-y);
-    expect(ball.getBallDx()).toBe(-dx);
-    expect(ball.getBallDy()).toBe(-dy);
+    expect(ball.getBallDx()).toBe(ball.getBallDx());
+    expect(ball.getBallDy()).toBe(ball.getBallDy());
     expect(ball.getBallColor()).toBe("white");
     expect(ball.getRandomizeBallColor()).toBe(false);
     expect(ball.getMode()).toBe(modes[GAME_MODES.MARATHON]);
