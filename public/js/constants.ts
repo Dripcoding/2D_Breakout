@@ -1,4 +1,3 @@
-// game modes
 import { IModeParam } from "./modules/mode";
 
 export enum GAME_MODES {
@@ -159,27 +158,22 @@ export const pastelDefaultRadio = document.querySelector<HTMLInputElement>(
   "#pastelDefaultRadio"
 );
 
-// ball color select
 export const ballColorSelect = document.querySelector<HTMLSelectElement>(
   "#ballColorSelect"
 );
 
-// paddle color select
 export const paddleColorSelect = document.querySelector<HTMLSelectElement>(
   "#paddleColorSelect"
 );
 
-// brickGrid color select
 export const brickColorSelect = document.querySelector<HTMLSelectElement>(
   "#brickColorSelect"
 );
 
-// scoreboard reset button
 export const scoreBoardResetBtn = document.querySelector<HTMLButtonElement>(
   "#scoreBoardResetBtn"
 );
 
-// border toggle checkbox
 export const borderColorCheckBox = document.querySelector<HTMLInputElement>(
   "#borderColorCheckBox"
 )

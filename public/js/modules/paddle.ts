@@ -28,15 +28,12 @@ class Paddle implements IPaddle {
 
   constructor(public canvas: ICanvas) {
     this.canvas = canvas;
-    // paddle properties
     this.paddleColor = "#0095DD";
     this.paddleHeight = 10;
     this.paddleWidth = 75;
-    // starting position
     this.paddleX = (this.canvas.getWidth() - this.paddleWidth) / 2;
   }
 
-  // draw paddle to the canvas
   public drawPaddle(canvas: ICanvas): void {
     const canvasHeight = canvas.getHeight();
     const ctx = this.canvas.getCtx();
@@ -53,7 +50,6 @@ class Paddle implements IPaddle {
     ctx.closePath();
   }
 
-  // update paddle position
   public update(x: number): void {
     this.paddleX += x;
   }

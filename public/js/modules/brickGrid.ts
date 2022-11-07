@@ -36,7 +36,6 @@ interface IBrickObject {
 }
 
 class BrickGrid implements IBrickGrid {
-  // @ts-ignore
   private activeBrickCount: number;
   private brickColor: string;
   private brickPadding: number;
@@ -49,8 +48,7 @@ class BrickGrid implements IBrickGrid {
   private bricks: IBrickObject[][];
   private mode: IModeParam;
 
-  constructor(mode: any) {
-    // brickGrid properties
+  constructor(mode: IModeParam) {
     this.brickColor = "#dc004e";
     this.brickRowCount = 10;
     this.brickColumnCount = 7;
@@ -83,37 +81,24 @@ class BrickGrid implements IBrickGrid {
     const red = Math.random() * 256;
     const green = Math.random() * 256;
     const blue = Math.random() * 256;
-    const color = `rgb(${red}, ${green}, ${blue})`;
-    this.brickColor = color;
+    
+    this.brickColor = `rgb(${red}, ${green}, ${blue})`;
+    
     return this.brickColor;
   }
 
   public drawBricks(canvas: ICanvas): void {
-    const ctx = canvas.getCtx();
-
     for (let col = 0; col < this.brickColumnCount; col++) {
       for (let row = 0; row < this.brickRowCount; row++) {
-        let brick = this.bricks[col][row];
-        if (brick.status === 1) {
-          // ball did not collide with brick
-          let brickX =
-            col * (this.brickWidth + this.brickPadding) +
-            this.brickOffsetLeft; // offset X position from previous brick
-          let brickY =
-            row * (this.brickHeight + this.brickPadding) +
-            this.brickOffsetTop; // offset Y position from previous brick
+        const brick = this.bricks[col][row];
+        if (this.isBrickHit(brick)) {
+          const brickX = this.calculateBrickXPositionWithOffset(col);
+          const brickY = this.calculateBrickYPosition(row);
+            
           brick.x = brickX;
           brick.y = brickY;
-          ctx.beginPath();
-          ctx.rect(
-            brick.x,
-            brick.y,
-            this.brickWidth,
-            this.brickHeight
-          );
-          ctx.fillStyle = this.brickColor;
-          ctx.fill();
-          ctx.closePath();
+
+          this.drawBrickGrid(canvas, brick.x, brick.y);
         }
       }
     }
@@ -128,6 +113,33 @@ class BrickGrid implements IBrickGrid {
     }
 
     return this.bricks;
+  }
+  
+  private drawBrickGrid(canvas: ICanvas, brickX: number, brickY: number): void {
+    const ctx = canvas.getCtx();
+    
+    ctx.beginPath();
+    ctx.rect(
+      brickX,
+      brickY,
+      this.brickWidth,
+      this.brickHeight
+    );
+    ctx.fillStyle = this.brickColor;
+    ctx.fill();
+    ctx.closePath();
+  }
+  
+  private calculateBrickXPositionWithOffset(column: number): number {
+    return column * (this.brickWidth + this.brickPadding) + this.brickOffsetLeft;
+  }
+  
+  private calculateBrickYPosition(row: number): number {
+    return row * (this.brickHeight + this.brickPadding) + this.brickOffsetTop;
+  }
+  
+  private isBrickHit(brick: IBrickObject): boolean {
+    return brick.status === 1;
   }
 
   public getBrickColor(): string {

@@ -1,5 +1,3 @@
-// use localStorage as a source of truth for game scores
-
 interface Score {
   mode: string;
   score: number;
@@ -19,13 +17,11 @@ export const createScoreTimestamp = (): string => {
 
 export const createScore = (score: number, mode: string): Score => {
   const timestamp = createScoreTimestamp();
-  const userScore: Score = {
+  return {
     mode,
     score,
     timestamp
   };
-
-  return userScore;
 };
 
 export const setScore = (userScore: Score): void => {

@@ -21,7 +21,7 @@ describe("game", () => {
   const canvas = new MockCanvas();
   const ball = new Ball(canvas.height, canvas.width, mode);
   const player = new Player(mode.getModeParam());
-  const brick = new BrickGrid(mode);
+  const brick = new BrickGrid(mode.getModeParam());
   const paddle = new Paddle(canvas);
   const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -213,7 +213,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
       const spy = jest.spyOn(game, "drawCurrentGameMode");
@@ -231,7 +231,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -254,7 +254,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -278,7 +278,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -296,7 +296,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -314,7 +314,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
@@ -329,7 +329,7 @@ describe("game", () => {
       const canvas = new MockCanvas();
       const ball = new Ball(canvas.height, canvas.width, mode);
       const player = new Player(mode.getModeParam());
-      const brick = new BrickGrid(mode);
+      const brick = new BrickGrid(mode.getModeParam());
       const paddle = new Paddle(canvas);
       const game = new Game(ball, brick, canvas, mode, paddle, player);
 
