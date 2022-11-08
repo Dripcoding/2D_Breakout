@@ -14,8 +14,7 @@ module.exports = {
     },
     upload: {
       target: "filesystem",
-      outputDir: "/tmp/lighthouseci",
-      reportFileNamePattern: "lighthouse-desktop-report"
+      outputDir: "/tmp/lighthouseci"
     },
     assert: {
       assertions: {
