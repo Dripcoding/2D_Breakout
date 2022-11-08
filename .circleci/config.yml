@@ -58,9 +58,9 @@ jobs:
           node-version: '16.13'
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
-      - run: yarn build && yarn lhc-desktop
+      - run: yarn build && yarn lhc-desktop && cd ./home/circleci/project/ && ls
       - store_artifacts:
-          path: /tmp/lighthouse
+          path: /home/circleci/project/lighthouse-desktop-report
           destination: lighthouse-desktop
   lighthouse-no-emulation-no-throttle:
     docker:
