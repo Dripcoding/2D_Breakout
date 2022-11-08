@@ -75,6 +75,8 @@ jobs:
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-no-emulation
   create-example-artifact:
+    docker:
+      - image: cimg/base:stable
     working_directory: /tmp
     steps:
         - run:
