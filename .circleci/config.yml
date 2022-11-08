@@ -49,7 +49,6 @@ jobs:
   lighthouse-desktop:
     docker:
       - image: cimg/base:stable
-    working_directory: /tmp
     steps:
       - checkout
       - browser-tools/install-chrome
