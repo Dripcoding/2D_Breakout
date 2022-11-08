@@ -1,5 +1,3 @@
-const { EnvironmentPlugin } = require("webpack");
-
 module.exports = {
   ci: {
     healthcheck: {
@@ -16,10 +14,8 @@ module.exports = {
       }
     },
     upload: {
-      target: "lhci",
-      serverBaseUrl: "https://mysterious-reef-20463.herokuapp.com/",
-      token: "7513efc3-46a5-408f-ab47-853288e41992",
-      ignoreDuplicateBuildFailure: true
+      target: "filesystem",
+      outputDir: "/tmp/lighthouseci"
     },
     assert: {
       assertions: {

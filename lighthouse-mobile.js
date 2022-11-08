@@ -1,5 +1,3 @@
-const { EnvironmentPlugin } = require("webpack");
-
 module.exports = {
   ci: {
     healthcheck: {
@@ -12,10 +10,8 @@ module.exports = {
       numberOfRuns: 5
     },
     upload: {
-      target: "lhci",
-      serverBaseUrl: "https://frozen-citadel-11584.herokuapp.com",
-      token: "68dd7f42-2b5a-41e8-8160-0fd14b022e47",
-      ignoreDuplicateBuildFailure: true
+      target: "filesystem",
+      outputDir: "/tmp/lighthouseci"
     },
     assert: {
       assertions: {
