@@ -49,7 +49,6 @@ jobs:
   lighthouse-desktop:
     docker:
       - image: cimg/base:stable
-    working_directory: /tmp
     steps:
       - checkout
       - browser-tools/install-chrome
@@ -59,9 +58,9 @@ jobs:
           node-version: '16.13'
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
-      - run: yarn build && yarn lhc-desktop > /tmp/lighthouse-desktop
+      - run: yarn build && yarn lhc-desktop
       - store_artifacts:
-          path: /tmp/lighthouse-desktop
+          path: /tmp/lighthouseci
           destination: lighthouse-desktop-report
   lighthouse-no-emulation-no-throttle:
     docker:
