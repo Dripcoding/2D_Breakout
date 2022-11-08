@@ -50,6 +50,7 @@ jobs:
   lighthouse-desktop:
     docker:
       - image: cimg/base:stable
+    working_directory: /tmp
     steps:
       - checkout
       - browser-tools/install-chrome
@@ -60,7 +61,9 @@ jobs:
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-desktop
-      - run: cat ./.lighthouseci/lighthouse-desktop-report
+      - store_artifacts:
+          path: /tmp/lighthouse
+          destination: lighthouse-desktop
   lighthouse-no-emulation-no-throttle:
     docker:
       - image: cimg/base:stable
@@ -74,19 +77,3 @@ jobs:
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-no-emulation
-  create-example-artifact:
-    docker:
-      - image: cimg/base:stable
-    working_directory: /tmp
-    steps:
-        - run:
-            name: Creating Example Artifact
-            command: |
-              echo "my artifact file" > /tmp/artifact-1;
-              mkdir /tmp/artifacts;
-              echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
-        - store_artifacts:
-            path: /tmp/artifact-1
-            destination: artifact-file
-        - store_artifacts:
-            path: /tmp/artifacts
