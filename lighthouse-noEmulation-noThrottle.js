@@ -1,5 +1,3 @@
-const { EnvironmentPlugin } = require("webpack");
-
 module.exports = {
   ci: {
     healthcheck: {
