@@ -13,10 +13,9 @@ module.exports = {
       }
     },
     upload: {
-      target: "lhci",
-      serverBaseUrl: "https://aqueous-caverns-79659.herokuapp.com/",
-      token: "4021253d-9a78-45b0-968f-8f3b51b6f07e",
-      ignoreDuplicateBuildFailure: true
+      target: "filesystem",
+      outputDir: ".",
+      reportFileNamePattern: "lighthouse-desktop-report"
     },
     assert: {
       assertions: {
