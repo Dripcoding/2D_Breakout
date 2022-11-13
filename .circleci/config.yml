@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.0
   browser-tools: circleci/browser-tools@1.2.4
-  heroku: circleci/heroku@1.2.6
 
 workflows:
   main:
@@ -12,7 +11,7 @@ workflows:
       - lighthouse-mobile
       - lighthouse-desktop
       - lighthouse-no-emulation-no-throttle
-      - heroku/deploy-via-git:
+      - firebase-deploy:
           requires:
             - tests
             - lighthouse-mobile
@@ -30,7 +29,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: "16.13"
       - run: yarn install
       - run: yarn test
   lighthouse-mobile:
@@ -42,7 +41,7 @@ jobs:
       - browser-tools/install-chromedriver
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: "16.13"
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-mobile
@@ -58,7 +57,7 @@ jobs:
       - browser-tools/install-chromedriver
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: "16.13"
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-desktop
@@ -74,10 +73,15 @@ jobs:
       - browser-tools/install-chromedriver
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: "16.13"
       - run: yarn install
       - run: yarn global add @lhci/cli@0.4.x
       - run: yarn build && yarn lhc-no-emulation
       - store_artifacts:
           path: /tmp/lighthouseci
           destination: lighthouse-no-emulation-report
+  firebase-deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
