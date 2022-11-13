@@ -84,4 +84,5 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - name: deploy to firebase
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
