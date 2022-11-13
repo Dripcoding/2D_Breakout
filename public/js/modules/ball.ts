@@ -65,7 +65,7 @@ class Ball implements IBall {
     this.y = height - 30;
     // starting velocity
     this.dx = Math.random() * (this.modeParam.maxDx - this.modeParam.dx) + this.modeParam.dx;
-    this.dy = Math.random() * (this.modeParam.maxDy - this.modeParam.dy) + this.modeParam.dy;
+    this.dy = (Math.random() * (this.modeParam.maxDy - this.modeParam.dy) + this.modeParam.dy) * -1;
     this.randomizeBallColor = true;
   }
 

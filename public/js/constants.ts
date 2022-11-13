@@ -29,16 +29,16 @@ export const modes: { [index: string]: IModeParam } = {
     dx: 5,
     dy: 5,
     lives: 3,
-    maxDx: 10,
-    maxDy: 10,
+    maxDx: 7,
+    maxDy: 7,
     name: "hard"
   },
   [GAME_MODES.VERY_HARD]: {
     dx: 6,
     dy: 6,
     lives: 2,
-    maxDx: 15,
-    maxDy: 15,
+    maxDx: 8,
+    maxDy: 8,
     name: "veryHard"
   },
   [GAME_MODES.MARATHON]: {
