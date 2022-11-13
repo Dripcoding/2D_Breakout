@@ -84,7 +84,12 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: "16.13"
       - run: yarn install
+      - run: yarn build
       - run:
           name: deploy to firebase-deploy
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
