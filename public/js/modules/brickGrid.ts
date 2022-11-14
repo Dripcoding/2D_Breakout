@@ -29,7 +29,7 @@ export interface IBrickGrid {
   setBrickColor(color: string): void;
 }
 
-interface IBrickObject {
+export interface IBrickObject {
   status: number;
   x: number;
   y: number;
