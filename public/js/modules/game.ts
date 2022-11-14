@@ -260,6 +260,10 @@ class Game {
     this.ball.setModeParam(newMode);
     this.player.setModeParam(newMode);
 
+    const ctx = this.canvas.getCtx();
+    
+    ctx.clearRect((this.canvas.getWidth() / 2) - 90, 0, 175, 25);
+
     this.drawCurrentGameMode(this.mode);
 
     return this.mode;
