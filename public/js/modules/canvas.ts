@@ -1,5 +1,5 @@
 import { IBall } from "./ball";
-import { IBrickGrid } from "./brickGrid";
+import { IBrickGrid, IBrickObject } from "./brickGrid";
 import { IPaddle } from "./paddle";
 import { IPlayer } from "./player";
 
@@ -52,10 +52,7 @@ class Canvas implements ICanvas {
     const paddleHeight = paddle.getPaddleHeight();
     const playerLives = player.getLives();
 
-    if (this.isCollidingWithTopEdge(ball)) {
-      ball.setBallDy(-ballDy);
-      ball.changeColor();
-    } else if (this.isApproachingBottomEdge(ball, paddleHeight) && this.isCollidingWithPaddle(ball, paddle)) {
+    if (this.isCollidingWithTopEdge(ball) || (this.isApproachingBottomEdge(ball, paddleHeight) && this.isCollidingWithPaddle(ball, paddle))) {
       ball.setBallDy(-ballDy);
       ball.changeColor();
     } else if (this.isApproachingBottomEdge(ball, paddleHeight)) {
@@ -107,14 +104,10 @@ class Canvas implements ICanvas {
     brickGrid: IBrickGrid,
     player: IPlayer
   ): void {
-    const ballX = ball.getBallX();
-    const ballY = ball.getBallY();
     const ballDy = ball.getBallDy();
     const brickColumnCount = brickGrid.getBrickColumnCount();
     const brickRowCount = brickGrid.getBrickRowCount();
     const bricks = brickGrid.getBricks();
-    const brickHeight = brickGrid.getBrickHeight();
-    const brickWidth = brickGrid.getBrickWidth();
     const playerScore = player.getScore();
 
     // compare position of bricks with the ball for every frame
@@ -125,10 +118,7 @@ class Canvas implements ICanvas {
         if (brick.status === 1) {
           // a collision with a brick occurs when the center of the ball is inside a brick's coordinates
           // if a collision occurs, change the movement of the ball, a brick's status, score
-          if (
-            this.isCollidingWithBrickLeftAndRightEdge(ballX, brick.x, brickWidth) &&
-            this.isCollidingWithBrickTopAndBottomEdge(ballY, brick.y, brickHeight)
-          ) {
+          if (this.isCollidingWithBrick(ball, brick, brickGrid)) {
             ball.setBallDy(-ballDy);
             if (ball.getRandomizeBallColor()) {
               ball.changeColor();
@@ -140,6 +130,11 @@ class Canvas implements ICanvas {
         }
       }
     }
+  }
+
+  private isCollidingWithBrick(ball: IBall, brick: IBrickObject, brickGrid: IBrickGrid) {
+    return this.isCollidingWithBrickLeftAndRightEdge(ball.getBallX(), brick.x, brickGrid.getBrickWidth()) &&
+            this.isCollidingWithBrickTopAndBottomEdge(ball.getBallY(), brick.y, brickGrid.getBrickHeight());
   }
 
   private isCollidingWithBrickLeftAndRightEdge(ballX: number, brickX: number, brickWidth: number): boolean {

@@ -118,7 +118,7 @@ class Game {
     }
 
     // move paddle right until the right edge of the canvas
-    if (this.hasPlayerMovedRight(paddleX, paddleWidth, canvas.getWidth())) {;
+    if (this.hasPlayerMovedRight(paddleX, paddleWidth, canvas.getWidth())) {
       paddle.update(7);
     } else if (this.hasPlayerMovedLeft(paddleX)) {
       paddle.update(-7);
@@ -309,10 +309,15 @@ class Game {
 
   public showGameEventModal = (title: string, message: string): void => {
     setScore(createScore(this.player.getScore(), this.mode.getModeParam().name));
-    gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null;
-    gameEndModalBody
-      ? (gameEndModalBody.innerHTML = `<p>${message}</p>`)
-      : null;
+
+    if (gameEndModalTitle) {
+        gameEndModalTitle.textContent = title;
+    }
+
+    if (gameEndModalBody) {
+        gameEndModalBody.innerHTML = `<p>${message}</p>`;
+    }
+
     $("#gameEndModal").modal("toggle");
     this.pauseGame();
   };

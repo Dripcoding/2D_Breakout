@@ -28,7 +28,7 @@ export interface IBall {
 
   getRandomizeBallColor(): boolean;
 
-  getMode(): IModeParam;
+  getModeParam(): IModeParam;
 
   setRandomizeBallColor(randomize: boolean): boolean;
 
@@ -124,16 +124,16 @@ class Ball implements IBall {
     return this.randomizeBallColor;
   }
 
-  public getMode(): IModeParam {
+  public getModeParam(): IModeParam {
     return this.modeParam;
   }
 
-  public setRandomizeBallColor(randomize: boolean): boolean {
-    return this.randomizeBallColor = randomize;
+  public setRandomizeBallColor(randomizeBallColor: boolean): boolean {
+    return this.randomizeBallColor = randomizeBallColor;
   }
 
-  public setBallColor(color: string): string {
-    return this.ballColor = color;
+  public setBallColor(ballColor: string): string {
+    return this.ballColor = ballColor;
   }
 
   public setBallX(x: number): void {
