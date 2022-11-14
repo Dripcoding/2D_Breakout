@@ -53,6 +53,8 @@ describe("game", () => {
 
   test("selectGameMode", () => {
     let mockEvent = { target: { value: "easy" } };
+    const gameSpy = jest.spyOn(game, 'drawCurrentGameMode');
+    const ctxSpy = jest.spyOn(canvas.getCtx(), 'clearRect');
 
     expect(game.selectGameMode(mockEvent as any)).toEqual(modes["easy"]);
 
@@ -67,6 +69,9 @@ describe("game", () => {
     mockEvent = { target: { value: "veryHard" } };
 
     expect(game.selectGameMode(mockEvent as any)).toEqual(modes["veryHard"]);
+
+    expect(gameSpy).toHaveBeenCalledTimes(4);
+    expect(ctxSpy).toHaveBeenCalledTimes(4);
   });
 
   test("keyDownHandler", () => {
