@@ -1,112 +1,112 @@
 body {
-    background-color: #272c34;
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    font-size: 16px;
+	background-color: #272c34;
+	display: block;
+	max-width: 100%;
+	margin: 0 auto;
+	font-size: 16px;
 }
 
 /* navigation bar styles */
 body nav.navbar {
-    background-color: #1976d2 !important;
+	background-color: #1976d2 !important;
 }
 
 a.navbar-brand,
 a.nav-item {
-    color: #eee !important;
+	color: #eee !important;
 }
 
 button.btn,
 button.btn-secondary {
-    background-color: #dc004e !important;
-    border-color: #dc004e;
-    box-shadow: none !important;
-    width: 140px;
+	background-color: #dc004e !important;
+	border-color: #dc004e;
+	box-shadow: none !important;
+	width: 140px;
 }
 
 /* container styles */
 .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0 auto;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	overflow: auto;
 }
 
 /* about, rules, game-modes modal styles */
 section.about,
 section.rules,
 section.game-modes {
-    display: block;
-    text-align: center;
-    font-size: 1.5rem;
-    width: 350px;
+	display: block;
+	text-align: center;
+	font-size: 1.5rem;
+	width: 350px;
 }
 
 #githubRepoLink {
-    color: #eee;
+	color: #eee;
 }
 
 ul {
-    width: 50%;
-    margin: 20px auto;
-    list-style: none;
+	width: 50%;
+	margin: 20px auto;
+	list-style: none;
 }
 
 p {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .modal-content {
-    background-color: unset;
+	background-color: unset;
 }
 
 .modal-content .modal-header {
-    background-color: #dc004e;
-    border-bottom: none;
-    color: #eee;
+	background-color: #dc004e;
+	border-bottom: none;
+	color: #eee;
 }
 
 .modal-content .close {
-    color: #eee;
+	color: #eee;
 }
 
 .modal-content .modal-body,
 .controlsTable {
-    background-color: #272c34;
-    color: #eee;
+	background-color: #272c34;
+	color: #eee;
 }
 
 #controlsModal .controlsTableHeader {
-    border-top: none;
+	border-top: none;
 }
 
 #controlsModal .modal-body {
-    padding: 0;
+	padding: 0;
 }
 
 /* toolbar button styles */
 .btn-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .btn-toolbar {
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+	margin-bottom: 20px;
 }
 
 /* game mode button styles */
@@ -114,151 +114,151 @@ p {
 .medium-mode-btn,
 .hard-mode-btn,
 .veryHard-mode-btn {
-    display: block;
-    font-size: 1.2rem;
-    border-radius: 15px 50px;
-    width: 200px;
-    height: 50px;
-    margin: 10px auto;
-    outline: none;
-    box-shadow: 3px 3px 5px 1px #ccc;
+	display: block;
+	font-size: 1.2rem;
+	border-radius: 15px 50px;
+	width: 200px;
+	height: 50px;
+	margin: 10px auto;
+	outline: none;
+	box-shadow: 3px 3px 5px 1px #ccc;
 }
 
 .easy-mode-btn {
-    background-color: #76ff03;
+	background-color: #76ff03;
 }
 
 .medium-mode-btn {
-    background-color: #ffa000;
+	background-color: #ffa000;
 }
 
 .hard-mode-btn {
-    background-color: #ff5722;
+	background-color: #ff5722;
 }
 
 .veryHard-mode-btn {
-    background-color: #dd2c00;
+	background-color: #dd2c00;
 }
 
 /* canvas styles */
 canvas {
-    display: block;
-    margin: 20px auto 10px auto;
+	display: block;
+	margin: 20px auto 10px auto;
 }
 
 /* scoreboard styles */
 #scoreBoard {
-    max-width: 900px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    letter-spacing: 1px;
+	max-width: 900px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	letter-spacing: 1px;
 }
 
 #scoreBoard thead th {
-    background-color: #dc004e;
-    border-bottom: none;
-    color: white;
+	background-color: #dc004e;
+	border-bottom: none;
+	color: white;
 }
 
 #scoreBoard th {
-    border-top: none;
+	border-top: none;
 }
 
 #scoreBoard tr {
-    color: white;
+	color: white;
 }
 
 #scoreBoard tr td {
-    border-top: none;
+	border-top: none;
 }
 
 /* theme styles */
 #themeOne-container,
 #themeTwo-container,
 #themeThree-container {
-    height: 40px;
+	height: 40px;
 }
 
 .pastelColorContainer {
-    border: 1px solid #eee;
-    display: block;
-    width: 30%;
-    height: 15px;
+	border: 1px solid #eee;
+	display: block;
+	width: 30%;
+	height: 15px;
 }
 
 #pastelOneRadio-color-1 {
-    background-color: #2a9d8fff;
-    margin-left: 15px;
+	background-color: #2a9d8fff;
+	margin-left: 15px;
 }
 
 #pastelOneRadio-color-2 {
-    background-color: #e76f51ff;
+	background-color: #e76f51ff;
 }
 
 #pastelOneRadio-color-3 {
-    background-color: #264653ff;
+	background-color: #264653ff;
 }
 
 #pastelTwoRadio-color-1 {
-    background-color: #a8dadcff;
-    margin-left: 15px;
+	background-color: #a8dadcff;
+	margin-left: 15px;
 }
 
 #pastelTwoRadio-color-2 {
-    background-color: #e63946ff;
+	background-color: #e63946ff;
 }
 
 #pastelTwoRadio-color-3 {
-    background-color: #1d3557ff;
+	background-color: #1d3557ff;
 }
 
 #pastelThreeRadio-color-1 {
-    background-color: #fcbf49ff;
-    margin-left: 15px;
+	background-color: #fcbf49ff;
+	margin-left: 15px;
 }
 
 #pastelThreeRadio-color-2 {
-    background-color: #d62828ff;
+	background-color: #d62828ff;
 }
 
 #pastelThreeRadio-color-3 {
-    background-color: #003049ff;
+	background-color: #003049ff;
 }
 
 #pastelDefaultRadio-color-1 {
-    background-color: #1976d2;
-    margin-left: 15px;
+	background-color: #1976d2;
+	margin-left: 15px;
 }
 
 #pastelDefaultRadio-color-2 {
-    background-color: #dc004e;
+	background-color: #dc004e;
 }
 
 #pastelDefaultRadio-color-3 {
-    background-color: #272c34;
+	background-color: #272c34;
 }
 
-label[for="ballColorSelect"],
-label[for="paddleColorSelect"],
-label[for="brickColorSelect"] {
-    margin-top: 10px;
+label[for='ballColorSelect'],
+label[for='paddleColorSelect'],
+label[for='brickColorSelect'] {
+	margin-top: 10px;
 }
 
 #scoreBoardResetBtn {
-    margin-top: 15px;
-    color: white;
+	margin-top: 15px;
+	color: white;
 }
 
 #borderColorCheckBoxContainer {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 .canvas--showBorder {
-    border: 1px solid white;
+	border: 1px solid white;
 }
 
 @media only screen and (max-width: 480px) {
-    .btn-toolbar {
-        flex-direction: column;
-    }
+	.btn-toolbar {
+		flex-direction: column;
+	}
 }
